@@ -2,7 +2,9 @@ const express = require("express")
 const app = express()
 const port = 3000
 const { Client } = require("pg");
+// SQL Query
 const qry = "SELECT * FROM ocean";
+// https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
 const cors = require('cors');
 app.use(cors({
     origin: '*'
@@ -18,7 +20,7 @@ const klient = new Client({
 
 klient.connect();
 
-
+// Fejlfinding
 app.get("/data", async (req, res) => {
     try {
         let queryData = await klient.query(qry);
