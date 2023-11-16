@@ -3,7 +3,9 @@ const app = express()
 const port = 3000
 const { Client } = require("pg");
 // SQL Query
-const qry = "SELECT * FROM ocean";
+const qry1 = "SELECT * FROM capita";
+const qry2 = "SELECT * FROM ocean";
+const qry3 = "SELECT * FROM total";
 // https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
 const cors = require('cors');
 app.use(cors({
@@ -21,9 +23,9 @@ const klient = new Client({
 klient.connect();
 
 // Fejlfinding
-app.get("/data", async (req, res) => {
+app.get("/datacapita", async (req, res) => {
     try {
-        let queryData = await klient.query(qry);
+        let queryData = await klient.query(qry1);
         res.json({
             "ok": true,
             "data": queryData.rows,
@@ -35,6 +37,37 @@ app.get("/data", async (req, res) => {
         })
     }
 })
+
+app.get("/dataocean", async (req, res) => {
+    try {
+        let queryData = await klient.query(qry2);
+        res.json({
+            "ok": true,
+            "data": queryData.rows,
+        })
+    } catch (error) {
+        res.json({
+            "ok": false,
+            "message": error.message,
+        })
+    }
+})
+
+app.get("/datatotal", async (req, res) => {
+    try {
+        let queryData = await klient.query(qry3);
+        res.json({
+            "ok": true,
+            "data": queryData.rows,
+        })
+    } catch (error) {
+        res.json({
+            "ok": false,
+            "message": error.message,
+        })
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Appl. lytter på http://localhost:${port}`)
