@@ -6,6 +6,7 @@ const { Client } = require("pg");
 const qry1 = "SELECT entity, code, mismanaged FROM capita";
 const qry2 = "SELECT * FROM ocean";
 const qry3 = "SELECT * FROM total";
+
 // https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
 const cors = require('cors');
 app.use(cors({

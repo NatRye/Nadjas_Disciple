@@ -1,11 +1,11 @@
 Entity,Code,Year,Mismanaged waste emitted to the ocean (metric tons year-1)
-Africa,,2019,78252
+
 Albania,ALB,2019,1565
 Algeria,DZA,2019,5774
 Angola,AGO,2019,860
 Antigua and Barbuda,ATG,2019,2
 Argentina,ARG,2019,4137
-Asia,,2019,793298
+
 Australia,AUS,2019,32
 Bahamas,BHS,2019,20
 Bahrain,BHR,2019,0
@@ -45,7 +45,7 @@ El Salvador,SLV,2019,808
 Equatorial Guinea,GNQ,2019,405
 Eritrea,ERI,2019,48
 Estonia,EST,2019,12
-Europe,,2019,5832
+
 Fiji,FJI,2019,365
 Finland,FIN,2019,0
 France,FRA,2019,235
@@ -107,10 +107,10 @@ Netherlands,NLD,2019,271
 New Zealand,NZL,2019,68
 Nicaragua,NIC,2019,1465
 Nigeria,NGA,2019,18640
-North America,,2019,44067
+
 North Korea,PRK,2019,50
 Norway,NOR,2019,0
-Oceania,,2019,3631
+
 Oman,OMN,2019,1
 Pakistan,PAK,2019,873
 Palau,PLW,2019,7
@@ -143,7 +143,7 @@ Slovenia,SVN,2019,11
 Solomon Islands,SLB,2019,100
 Somalia,SOM,2019,2
 South Africa,ZAF,2019,4266
-South America,,2019,54000
+
 South Korea,KOR,2019,387
 Spain,ESP,2019,235
 Sri Lanka,LKA,2019,9654
@@ -166,7 +166,7 @@ United States,USA,2019,2431
 Uruguay,URY,2019,998
 Venezuela,VEN,2019,5988
 Vietnam,VNM,2019,28221
+
 Western Sahara,ESH,2019,38
-World,OWID_WRL,2019,979458
 Yemen,YEM,2019,252
 Zimbabwe,ZWE,2019,0

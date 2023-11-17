@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
     <script>
         //magic
-        d3.json("http://localhost:3000/data").then(function (data) {
+        d3.json("http://localhost:3000/datacapita").then(function (data) {
             console.log(data);
         })
     </script>
@@ -40,13 +40,13 @@
         // Data and color scale
         var data = d3.map();
         var colorScale = d3.scaleThreshold()
-        .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-        .range(d3.schemeBlues[7]);
+        .domain([0, 2, 5 , 8, 10, 15, 20, 25, 35, 50])
+        .range(d3.schemeBlues[9]);
 
         // Load external data and boot
         d3.queue()
         .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-        .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.pop); })
+        .defer(d3.csv, "/mismanaged-plastic-waste-per-capita.csv", function(d) { data.set(d.Code, +d.Mismanaged_plastic_waste_per_capita); })
         .await(ready);
 
         function ready(error, topo) {
