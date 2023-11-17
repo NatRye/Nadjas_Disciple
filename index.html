@@ -17,6 +17,10 @@
       </div>
     <h1>Overskrift</h1>
     <h2>tekst </h2>
+    <button id="dataCapita">Datasæt 1</button>
+    <button id="dataOcean">Datasæt 2</button>
+    <button id="dataTotal">Datasæt 3</button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
     <script>
         //magic
@@ -31,7 +35,8 @@
 
     <!-- Create an element where the map will take place -->
     <svg id="my_dataviz" width="1000" height="1000"></svg>
-
+    <!-- Her laver vi et element der skal indeholder landenes data. Vi har givet dette element med id'et "country-info"-->
+<div id="country-info" style="position: absolute; top: 20px; right: 20px; background-color: white; padding: 10px; border: 1px solid black;"></div>Ollo boloo</div>
     <script>
         // The svg
         var svg = d3.select("svg"),
@@ -56,6 +61,13 @@
         .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
         .defer(d3.csv, "/mismanaged-plastic-waste-per-capita.csv", function(d) { data.set(d.Code, +d.Mismanaged_plastic_waste_per_capita); })
         .await(ready);
+
+        function showCountryData(country) { // Dette er funktion der skal vise landene data, som sættes ind i elementet med id'et "country-info"
+            var infoBox = document.getElementById('country-info');
+            infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>' + 
+                                '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (data.get(country.id)  || 'Data not available') + '</p>';
+        }
+
 
         function ready(error, topo) {
 
@@ -102,6 +114,9 @@
             .style("opacity", .8)
             .on("mouseover", mouseOver )
             .on("mouseleave", mouseLeave )
+            .on("click", function(d) { // her køres den funktion vi lavede før, med at vise landene. 
+                    showCountryData(d);
+                });
             }
     </script>
 
