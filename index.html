@@ -17,9 +17,9 @@
       </div>
     <h1>Overskrift</h1>
     <h2>tekst </h2>
-    <button id="dataCapita">Datasæt 1</button>
-    <button id="dataOcean">Datasæt 2</button>
-    <button id="dataTotal">Datasæt 3</button>
+    <button id="dataCapita">Data per capita</button>
+    <button id="dataOcean">Data Ocean</button>
+    <button id="dataTotal">Data Total</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
     <script>
@@ -36,7 +36,7 @@
     <!-- Create an element where the map will take place -->
     <svg id="my_dataviz" width="1000" height="1000"></svg>
     <!-- Her laver vi et element der skal indeholder landenes data. Vi har givet dette element med id'et "country-info"-->
-<div id="country-info" style="position: absolute; top: 20px; right: 20px; background-color: white; padding: 10px; border: 1px solid black;"></div>Ollo boloo</div>
+<div id="country-info" style="position: fixed; top: 20px; right: 20px; background-color: white; padding: 10px; border: 1px solid black;"></div>Ollo boloo</div>
     <script>
         // The svg
         var svg = d3.select("svg"),
