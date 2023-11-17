@@ -2,10 +2,19 @@ d3.select("#dataCapita")
   .on("click", function () {
     d3.selectAll("polygon")
     .transition()
-    .duration(1500)
-    .attr("cx", 500)
-    .attr("cy", 500)
-    .attr("fill", "yellow")
-    .attr("rx", 100)
-    .attr("ry", 200)
+    
+})
+
+d3.select("#dataOcean")
+  .on("click", function () {
+    d3.selectAll("polygon")
+    .transition()
+    
+})
+
+d3.select("#dataTotal")
+  .on("click", function () {
+    d3.selectAll("polygon")
+    .transition()
+    
 })
