@@ -9,6 +9,10 @@
 <body>
     <h1>Overskrift</h1>
     <h2>tekst </h2>
+    <button id="dataCapita">Datasæt 1</button>
+    <button id="dataOcean">Datasæt 2</button>
+    <button id="dataTotal">Datasæt 3</button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
     <script>
         //magic
@@ -79,7 +83,7 @@
             d3.select(this)
             .transition()
             .duration(0)
-            .style("stroke", "transparent")
+            .style("stroke", "black")
         }
 
         // Draw the map
@@ -97,7 +101,7 @@
                 d.total = data.get(d.id) || 0;
                 return colorScale(d.total);
             })
-            .style("stroke", "transparent")
+            .style("stroke", "black")
             .attr("class", function(d){ return "Country" } )
             .style("opacity", .8)
             .on("mouseover", mouseOver )
