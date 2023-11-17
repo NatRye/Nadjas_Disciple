@@ -3,7 +3,7 @@ const app = express()
 const port = 3000
 const { Client } = require("pg");
 // SQL Query
-const qry1 = "SELECT * FROM capita";
+const qry1 = "SELECT entity, code, mismanaged FROM capita";
 const qry2 = "SELECT * FROM ocean";
 const qry3 = "SELECT * FROM total";
 // https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
