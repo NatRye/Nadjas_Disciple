@@ -6,3 +6,7 @@ display: block;
 h1, h2 {
     text-align: center;
 }
+
+body {
+    background-color: rgb(241, 222, 187)
+}

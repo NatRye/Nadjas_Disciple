@@ -71,7 +71,7 @@
             d3.select(this)
             .transition()
             .duration(0)
-            .style("stroke", "transparent")
+            .style("stroke", "black")
         }
 
         // Draw the map
@@ -89,7 +89,7 @@
                 d.total = data.get(d.id) || 0;
                 return colorScale(d.total);
             })
-            .style("stroke", "transparent")
+            .style("stroke", "black")
             .attr("class", function(d){ return "Country" } )
             .style("opacity", .8)
             .on("mouseover", mouseOver )
