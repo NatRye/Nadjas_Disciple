@@ -46,4 +46,8 @@ body {
 
   .dropdown:hover .dropdown-content {display: block;}
 
+  #country-info {
+    border-radius: 10px;
+  }
+
   
