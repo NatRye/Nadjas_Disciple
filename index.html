@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="dropdown">
+        <button class="dropbtn">Download Dataset</button>
+        <div class="dropdown-content">
+          <a href="mismanaged-plastic-waste-per-capita.csv" download="mismanaged-plastic-waste-per-capita.csv">Per capita</a>
+          <a href="plastic-waste-emitted-to-the-ocean.csv" download="plastic-waste-emitted-to-the-ocean.csv"> Emitted to ocean</a>
+          <a href="plastic-waste-mismanaged 1.csv" download="plastic-waste-mismanaged 1.csv">Total waste mismanaged</a>
+        </div>
+      </div>
     <h1>Overskrift</h1>
     <h2>tekst </h2>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
@@ -96,6 +104,7 @@
             .on("mouseleave", mouseLeave )
             }
     </script>
+
 
 </body>
 </html>
