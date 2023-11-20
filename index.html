@@ -71,8 +71,8 @@
         d3.queue()
         .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson") //topo
         .defer(d3.json, "http://localhost:3000/datacapitA") //data1
-        .defer(d3.json, "http://localhost:3000/datacapitA")//data2
-        .defer(d3.json, "http://localhost:3000/datacapitA")//data3
+        .defer(d3.json, "http://localhost:3000/dataocean")//data2
+        .defer(d3.json, "http://localhost:3000/datatotal")//data3
         .await(ready);
 
         function showCountryData(country) { // Dette er funktion der skal vise landene data, som sættes ind i elementet med id'et "country-info"
@@ -93,32 +93,30 @@
             console.log(dataMapToShow);
            
             let showData1 = data1.data;
-
             showData1.forEach(element => {
                 dataMap1.set(element.code, +element.mismanaged);
             });
 
             let showData2 = data2.data;
-
             showData2.forEach(element => {
                 dataMap2.set(element.code, +element.mismanaged);
             });
 
             let showData3= data3.data;
-
             showData3.forEach(element => {
                 dataMap3.set(element.code, +element.mismanaged);
             });
 
             dataMapToShow = dataMap1;
-/*
+
+            
+            /*
             if(data == 1){
                 dataMapToShow = dataMap1;
             }
             else if(data == 2){
                 dataMapToShow = dataMap2;
             }
-
             */
 
         let mouseOver = function(d) {
