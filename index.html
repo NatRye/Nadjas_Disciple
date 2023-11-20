@@ -54,25 +54,72 @@
         .translate([width / 2, height / 2]);
 
         // Data and color scale
-        var data = d3.map();
+        var dataMapToShow = []; //Map til at blive vist
+
+        var dataMap1 = d3.map(); //Map for hvert datasæt
+        var dataMap2 = d3.map();
+        var dataMap3 = d3.map();
+        
+
+
+        
         var colorScale = d3.scaleThreshold()
         .domain([0, 2, 5, 8, 10, 15, 20, 25, 35, 50])
         .range(d3.schemeReds[9]);
 
         // Load external data and boot
         d3.queue()
-        .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-        .defer(d3.csv, "/mismanaged-plastic-waste-per-capita.csv", function(d) { data.set(d.Code, +d.Mismanaged_plastic_waste_per_capita); })
+        .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson") //topo
+        .defer(d3.json, "http://localhost:3000/datacapitA") //data1
+        .defer(d3.json, "http://localhost:3000/datacapitA")//data2
+        .defer(d3.json, "http://localhost:3000/datacapitA")//data3
         .await(ready);
 
         function showCountryData(country) { // Dette er funktion der skal vise landene data, som sættes ind i elementet med id'et "country-info"
             var infoBox = document.getElementById('country-info');
             infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>' + 
-                                '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (data.get(country.id)  || 'Data not available') + '</p>';
+                                '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMapToShow.get(country.id)  || 'Data not available') + '</p>';
         }
 
 
-        function ready(error, topo) {
+        function ready(error, topo, data1, data2, data3) {
+
+            console.log(topo);
+     
+            console.log(data1);
+            console.log(data2);
+            console.log(data3);
+
+            console.log(dataMapToShow);
+           
+            let showData1 = data1.data;
+
+            showData1.forEach(element => {
+                dataMap1.set(element.code, +element.mismanaged);
+            });
+
+            let showData2 = data2.data;
+
+            showData2.forEach(element => {
+                dataMap2.set(element.code, +element.mismanaged);
+            });
+
+            let showData3= data3.data;
+
+            showData3.forEach(element => {
+                dataMap3.set(element.code, +element.mismanaged);
+            });
+
+            dataMapToShow = dataMap1;
+/*
+            if(data == 1){
+                dataMapToShow = dataMap1;
+            }
+            else if(data == 2){
+                dataMapToShow = dataMap2;
+            }
+
+            */
 
         let mouseOver = function(d) {
             d3.selectAll(".Country")
@@ -97,6 +144,8 @@
             .style("stroke", "black")
         }
 
+        //Eventlistener til at skifte datasæt med
+
         // Draw the map
         svg.append("g")
             .selectAll("path")
@@ -109,7 +158,7 @@
             )
             // set the color of each country
             .attr("fill", function (d) {
-                d.total = data.get(d.id) || 0;
+                d.total = dataMapToShow.get(d.id) || 0;
                 return colorScale(d.total);
             })
             .style("stroke", "black")
@@ -121,6 +170,8 @@
                     showCountryData(d);
                 });
             }
+
+       
     </script>
 
 
