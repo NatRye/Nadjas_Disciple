@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Nadja's Disciple</title>
 </head>
 <body>
 <!--Download dataset knapper -->
@@ -17,13 +17,16 @@
         </div>
       </div>
 
+    <!-- tekst og basal info-->
     <h1 id="overskrift">Plastik Pollution</h1>
     <h2 id="tekst">tekst </h2>
+
+    <!-- knapper til skift af data på map-->
     <button id="dataCapita">Datasæt 1</button>
     <button id="dataOcean">Datasæt 2</button>
     <button id="dataTotal">Datasæt 3</button>
 
-
+    <!-- -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
     <script>
         //magic
@@ -31,38 +34,48 @@
             console.log(data);
         })
     </script>
+
+        <!-- scripts til selve kortet -->
     <script src="kort.js"></script>
     <script src="http://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
-    <!-- Create an element where the map will take place -->
+    <!-- Det element hvor mappet skal placeres -->
     <svg id="my_dataviz" width="1000" height="1000"></svg>
+
     <!-- Her laver vi et element der skal indeholder landenes data. Vi har givet dette element med id'et "country-info"-->
-<div id="country-info" style="position: fixed; top: 20px; right: 20px; background-color: white; padding: 10px; border: 1px solid black;"></div>Ollo boloo</div>
+    <div id="country-info" 
+         style="position: fixed; 
+         top: 20px; 
+         right: 20px; 
+         background-color: white; 
+         padding: 10px; 
+         border: 1px solid black;">
+    </div>
+    <div>Ollo boloo</div>
+    
     <script>
-        // The svg
+
+        // Svg
         var svg = d3.select("svg"),
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
-        // Map and projection
+        // Map og projection
         var path = d3.geoPath();
         var projection = d3.geoMercator()
         .scale(150)
         .center([0,20])
         .translate([width / 2, height / 2]);
 
-        // Data and color scale
+        // Data map for hvert dataset
         var dataMapToShow = []; //Map til at blive vist
-
-        var dataMap1 = d3.map(); //Map for hvert datasæt
-        var dataMap2 = d3.map();
-        var dataMap3 = d3.map();
+        var dataMap1 = d3.map(); //Map for datasæt 1
+        var dataMap2 = d3.map(); //Map for datasæt 2
+        var dataMap3 = d3.map(); //Map for datasæt 3
         
-
-
-        
+        //Skalering af farve
         var colorScale = d3.scaleThreshold()
         .domain([0, 2, 5, 8, 10, 15, 20, 25, 35, 50])
         .range(d3.schemeReds[9]);
@@ -75,23 +88,22 @@
         .defer(d3.json, "http://localhost:3000/datatotal")//data3
         .await(ready);
 
-        function showCountryData(country) { // Dette er funktion der skal vise landene data, som sættes ind i elementet med id'et "country-info"
+        //Funktion der viser landendes data i elementet med id'et "country-info"
+        function showCountryData(country) { 
             var infoBox = document.getElementById('country-info');
             infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>' + 
                                 '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMapToShow.get(country.id)  || 'Data not available') + '</p>';
         }
 
-
+        //Funktion der kaldes på når dataen loader ind
         function ready(error, topo, data1, data2, data3) {
-
             console.log(topo);
-     
             console.log(data1);
             console.log(data2);
             console.log(data3);
-
             console.log(dataMapToShow);
            
+            //kolonner i hvert dataset udvælges og knyttes til en
             let showData1 = data1.data;
             showData1.forEach(element => {
                 dataMap1.set(element.code, +element.mismanaged);
@@ -119,60 +131,63 @@
             }
             */
 
-        let mouseOver = function(d) {
-            d3.selectAll(".Country")
-            .transition()
-            .duration(0)
-            .style("opacity", .5)
-            d3.select(this)
-            .transition()
-            .duration(0)
-            .style("opacity", 1)
-            .style("stroke", "black")
-        }
-
-        let mouseLeave = function(d) {
-            d3.selectAll(".Country")
-            .transition()
-            .duration(0)
-            .style("opacity", .8)
-            d3.select(this)
-            .transition()
-            .duration(0)
-            .style("stroke", "black")
-        }
-
-        //Eventlistener til at skifte datasæt med
-
-        // Draw the map
-        svg.append("g")
-            .selectAll("path")
-            .data(topo.features)
-            .enter()
-            .append("path")
-            // draw each country
-            .attr("d", d3.geoPath()
-                .projection(projection)
-            )
-            // set the color of each country
-            .attr("fill", function (d) {
-                d.total = dataMapToShow.get(d.id) || 0;
-                return colorScale(d.total);
-            })
-            .style("stroke", "black")
-            .attr("class", function(d){ return "Country" } )
-            .style("opacity", .8)
-            .on("mouseover", mouseOver )
-            .on("mouseleave", mouseLeave )
-            .on("click", function(d) { // her køres den funktion vi lavede før, med at vise landene. 
-                    showCountryData(d);
-                });
+            //Når musen holdes over et land udfø
+            let mouseOver = function(d) {
+                d3.selectAll(".Country")
+                .transition()
+                .duration(0)
+                .style("opacity", .5)
+                d3.select(this)
+                .transition()
+                .duration(0)
+                .style("opacity", 1)
+                .style("stroke", "black")
             }
 
-       
+            //Dette sker når musen forlader et land
+            let mouseLeave = function(d) {
+                d3.selectAll(".Country")
+                .transition()
+                .duration(0)
+                .style("opacity", .8)
+                d3.select(this)
+                .transition()
+                .duration(0)
+                .style("stroke", "black")
+            }
+
+            //Eventlistener til at skifte datasæt med
+
+            // Draw the map
+            svg.append("g")
+                .selectAll("path")
+                .data(topo.features)
+                .enter()
+                .append("path")
+
+                // draw each country
+                .attr("d", d3.geoPath()
+                    .projection(projection)
+                )
+
+                // set the color of each country
+                .attr("fill", function (d) {
+                    d.total = dataMapToShow.get(d.id) || 0;
+                    return colorScale(d.total);
+                })
+                .style("stroke", "black")
+                .attr("class", function(d){ return "Country" } )
+                .style("opacity", .8)
+                .on("mouseover", mouseOver )
+                .on("mouseleave", mouseLeave )
+
+                // her køres den funktion vi lavede før, med at vise landene.
+                .on("click", function(d) {  
+                        showCountryData(d);
+                }
+            );
+        }
     </script>
-
-
 </body>
 </html>
 
