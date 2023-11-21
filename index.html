@@ -19,13 +19,18 @@
       </div>
 
     <!-- tekst og basal info-->
-    <h1 id="overskrift">Plastik Pollution</h1>
+    <h1 id="overskrift">Plastic Pollution</h1>
     <h2 id="tekst">tekst </h2>
 
     <!-- knapper til skift af data på map-->
-    <button id="dataCapita">Datasæt 1</button>
-    <button id="dataOcean">Datasæt 2</button>
-    <button id="dataTotal">Datasæt 3</button>
+    <div id="knapboks">
+
+    <p>Press a button to show the desired data:</p>
+    <button id="dataCapita">Per Capita</button>
+    <button id="dataOcean">Emitted To The Ocean</button>
+    <button id="dataTotal">Total Mismanaged Plastic Waste</button>
+
+    </div>
 
     <!-- -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"> </script>
@@ -95,7 +100,7 @@
 
     } else if (dataMapToShow === dataMap2) {
         infoBox.innerHTML += '<p>Plastic Waste Emitted To The Ocean in Tons: ' + (dataMap2.get(country.id) || 'Data not available') + '</p>';
-        
+
     } else if (dataMapToShow === dataMap3) {
         infoBox.innerHTML += '<p>Total Plastic Waste Mismanaged in Tons: ' + (dataMap3.get(country.id) || 'Data not available') + '</p>';
     }
