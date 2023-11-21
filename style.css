@@ -7,11 +7,12 @@
 /* Formatering af overskrifter */
 h1, h2 {
   text-align: center;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 /* Formatering af body-elementer */
 body {
-  background-color: rgb(241, 222, 187)
+  background-color: white
 }
 
 /* Styling af download-dataset knappen */
@@ -28,6 +29,7 @@ body {
 .dropdown {
   position: relative;
   display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 /* Styling af knappens drop-down indhold */
@@ -62,6 +64,7 @@ body {
 /* Styling af lande-info kasse */
 #country-info {
   border-radius: 10px;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 /* Styling af div element med knapper og tekst*/
