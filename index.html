@@ -222,7 +222,9 @@
             // Draw the map
             svg.append("g")
                 .selectAll("path")
-                .data(topo.features)
+                .data(topo.features.filter(function(d) {
+                    return d.properties.name != "Antarctica"
+                }))
                 .enter()
                 .append("path")
 
@@ -230,7 +232,6 @@
                 .attr("d", d3.geoPath()
                     .projection(projection)
                 )
-
                 .style("stroke", "black")
                 .attr("class", function(d){ return "Country" } )
                 .style("opacity", .8)
