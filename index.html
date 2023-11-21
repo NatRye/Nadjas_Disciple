@@ -99,11 +99,13 @@
             console.log(data3);
             console.log(dataMapToShow);
            
+            dataMapToShow = dataMap1;
+            
+
             //kolonner i hvert dataset udvælges og knyttes til en variabel
             let showData1 = data1.data;
             showData1.forEach(element => {
                 dataMap1.set(element.code, +element.mismanaged);
-
             });
 
             let showData2 = data2.data;
@@ -116,7 +118,7 @@
                 dataMap3.set(element.code, +element.mismanaged);
             });
 
-            dataMapToShow = dataMap1;
+            
 
 
             //Når musen holdes over et land udfø
@@ -189,6 +191,7 @@
                         return colorScale1;
                 }
             }
+            
 
             var colorScale1 = d3.scaleThreshold()
                 .domain([0, 2, 5, 8, 10, 15, 20, 25, 35, 50])
@@ -196,7 +199,7 @@
 
             var colorScale2 = d3.scaleThreshold()
                 .domain([10, 50, 100, 250, 500, 1000, 5000, 10000, 20000, 50000])
-                .range(d3.schemeReds[9]);
+                .range(d3.schemeBlues[9]);
 
             var colorScale3 = d3.scaleThreshold()
                 .domain([500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000])
