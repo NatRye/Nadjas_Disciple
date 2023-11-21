@@ -124,10 +124,10 @@
 
             
             /*
-            if(data == 1){
+            if(dataMaptoshow == 1){
                 dataMapToShow = dataMap1;
             }
-            else if(data == 2){
+            else if(dataMaptoshow == 2){
                 dataMapToShow = dataMap2;
             }
             */
@@ -158,6 +158,33 @@
             }
 
             //Eventlistener til at skifte datasæt med
+
+            // Event listeners for dataset buttons
+document.getElementById('dataCapita').addEventListener('click', function() {
+    dataMapToShow = dataMap1;
+    updateMap();
+});
+
+document.getElementById('dataOcean').addEventListener('click', function() {
+    dataMapToShow = dataMap2;
+    updateMap();
+});
+
+document.getElementById('dataTotal').addEventListener('click', function() {
+    dataMapToShow = dataMap3;
+    updateMap();
+});
+
+// Function to update the map based on the selected dataset
+function updateMap() {
+    svg.selectAll("path")
+        .data(topo.features)
+        .attr("fill", function (d) {
+            d.total = dataMapToShow.get(d.id) || 0;
+            return colorScale(d.total);
+        });
+}
+
 
             // Draw the map
             svg.append("g")
