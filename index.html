@@ -86,11 +86,22 @@
         .await(ready);
 
         //Funktion der viser landendes data i elementet med id'et "country-info"
-        function showCountryData(country) { 
-            var infoBox = document.getElementById('country-info');
-            infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>' + 
-                                '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMapToShow.get(country.id)  || 'Data not available') + '</p>';
-        }
+        function showCountryData(country) {
+    var infoBox = document.getElementById('country-info');
+    infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>';
+
+    if (dataMapToShow === dataMap1) {
+        infoBox.innerHTML += '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMap1.get(country.id) || 'Data not available') + '</p>';
+
+    } else if (dataMapToShow === dataMap2) {
+        infoBox.innerHTML += '<p>Plastic Waste Emitted To The Ocean in Tons: ' + (dataMap2.get(country.id) || 'Data not available') + '</p>';
+        
+    } else if (dataMapToShow === dataMap3) {
+        infoBox.innerHTML += '<p>Total Plastic Waste Mismanaged in Tons: ' + (dataMap3.get(country.id) || 'Data not available') + '</p>';
+    }
+}
+        
+        
 
         //Funktion der kaldes på når dataen loader ind
         function ready(error, topo, data1, data2, data3) {
