@@ -220,9 +220,7 @@
             // Draw the map
             svg.append("g")
                 .selectAll("path")
-                .data(topo.features.filter(function(d) {
-                    return d.properties.name != "Antarctica"
-                }))
+                .data(topo.features)
                 .enter()
                 .append("path")
 
