@@ -56,6 +56,7 @@
     
 
 
+
     <script>
         // Svg
         var svg = d3.select("svg"),
@@ -82,6 +83,7 @@
         .defer(d3.json, "http://localhost:3000/dataocean")//data2
         .defer(d3.json, "http://localhost:3000/datatotal")//data3
         .await(ready);
+        
 
         //Funktion der viser landendes data i en div med id'et "country-info" 
         function showCountryData(country) {
@@ -128,6 +130,7 @@
             console.log(data3);
             console.log(dataMapToShow);
            
+
             //kolonner i hvert dataset udvælges og knyttes til en variabel
             let showData1 = data1.data;
             showData1.forEach(element => {
@@ -171,7 +174,7 @@
             }
 
 
-            // Event listeners for dataset buttons
+            // Event listeners til skifte datasæt med dataset buttons
             document.getElementById('dataCapita').addEventListener('click', function() {
                 dataMapToShow = dataMap1;
                 updateMap('dataCapita');
@@ -187,6 +190,7 @@
                 updateMap('dataTotal');
             });
 
+
             // Function to update the map based on the selected dataset
             function updateMap(id) {
                 svg.selectAll("path")
@@ -199,9 +203,9 @@
                         return currentColorScale(d.total);
                     });
             }
+
             
             // Funktion der finder en farveskala baseret på valgt dataset
-            //Skalering af farve
             function updateColor(id) {
                 if (id === "dataCapita") {
                     return colorScale1;
@@ -215,6 +219,7 @@
             }
             
 
+            //Skaleringer af farve
             var colorScale1 = d3.scaleThreshold()
                 .domain([1, 2, 5, 8, 10, 15, 20, 25, 35, 50])
                 .range(d3.schemeReds[9]);
@@ -230,20 +235,20 @@
 
             // Draw the map
             svg.append("g")
-                .selectAll("path")
-                .data(topo.features)
-                .enter()
-                .append("path")
+            .selectAll("path")
+            .data(topo.features)
+            .enter()
+            .append("path")
 
-                // draw each country
-                .attr("d", d3.geoPath()
-                    .projection(projection)
-                )
-                .style("stroke", "black")
-                .attr("class", function(d){ return "Country" } )
-                .style("opacity", .8)
-                .on("mouseover", mouseOver )
-                .on("mouseleave", mouseLeave )
+            // draw each country
+            .attr("d", d3.geoPath()
+                .projection(projection)
+            )
+            .style("stroke", "black")
+            .attr("class", function(d){ return "Country" } )
+            .style("opacity", .8)
+            .on("mouseover", mouseOver )
+            .on("mouseleave", mouseLeave )
 
                 // her køres den funktion vi lavede før, med at vise landene.
                 
