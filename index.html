@@ -80,26 +80,26 @@
         // Load external data and boot
         d3.queue()
         .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson") //topo
-        .defer(d3.json, "http://localhost:3000/datacapitA") //data1
+        .defer(d3.json, "http://localhost:3000/datacapitA")//data1
         .defer(d3.json, "http://localhost:3000/dataocean")//data2
         .defer(d3.json, "http://localhost:3000/datatotal")//data3
         .await(ready);
 
         //Funktion der viser landendes data i elementet med id'et "country-info"
         function showCountryData(country) {
-    var infoBox = document.getElementById('country-info');
-    infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>';
+            var infoBox = document.getElementById('country-info');
+            infoBox.innerHTML = '<h2>' + country.properties.name + '</h2>';
 
-    if (dataMapToShow === dataMap1) {
-        infoBox.innerHTML += '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMap1.get(country.id) || 'Data not available') + '</p>';
+            if (dataMapToShow === dataMap1) {
+                infoBox.innerHTML += '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMap1.get(country.id) || 'Data not available') + '</p>';
 
-    } else if (dataMapToShow === dataMap2) {
-        infoBox.innerHTML += '<p>Plastic Waste Emitted To The Ocean in Tons: ' + (dataMap2.get(country.id) || 'Data not available') + '</p>';
-        
-    } else if (dataMapToShow === dataMap3) {
-        infoBox.innerHTML += '<p>Total Plastic Waste Mismanaged in Tons: ' + (dataMap3.get(country.id) || 'Data not available') + '</p>';
-    }
-}
+            } else if (dataMapToShow === dataMap2) {
+                infoBox.innerHTML += '<p>Plastic Waste Emitted To The Ocean in Tons: ' + (dataMap2.get(country.id) || 'Data not available') + '</p>';
+                
+            } else if (dataMapToShow === dataMap3) {
+                infoBox.innerHTML += '<p>Total Plastic Waste Mismanaged in Tons: ' + (dataMap3.get(country.id) || 'Data not available') + '</p>';
+            }
+        }
         
         
 
@@ -205,7 +205,7 @@
             
 
             var colorScale1 = d3.scaleThreshold()
-                .domain([0, 2, 5, 8, 10, 15, 20, 25, 35, 50])
+                .domain([1, 2, 5, 8, 10, 15, 20, 25, 35, 50])
                 .range(d3.schemeReds[9]);
 
             var colorScale2 = d3.scaleThreshold()
