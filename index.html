@@ -76,11 +76,6 @@
         var dataMap1 = d3.map(); //Map for datasæt 1
         var dataMap2 = d3.map(); //Map for datasæt 2
         var dataMap3 = d3.map(); //Map for datasæt 3
-        
-        //Skalering af farve
-        var colorScale = d3.scaleThreshold()
-        .domain([0, 2, 5, 8, 10, 15, 20, 25, 35, 50])
-        .range(d3.schemeReds[9]);
 
         // Load external data and boot
         d3.queue()
@@ -105,7 +100,10 @@
             console.log(data3);
             console.log(dataMapToShow);
            
-            //kolonner i hvert dataset udvælges og knyttes til en
+            dataMapToShow = dataMap1;
+            
+
+            //kolonner i hvert dataset udvælges og knyttes til en variabel
             let showData1 = data1.data;
             showData1.forEach(element => {
                 dataMap1.set(element.code, +element.mismanaged);
@@ -121,17 +119,8 @@
                 dataMap3.set(element.code, +element.mismanaged);
             });
 
-            dataMapToShow = dataMap1;
-
             
-            /*
-            if(dataMaptoshow == 1){
-                dataMapToShow = dataMap1;
-            }
-            else if(dataMaptoshow == 2){
-                dataMapToShow = dataMap2;
-            }
-            */
+
 
             //Når musen holdes over et land udfø
             let mouseOver = function(d) {
@@ -161,32 +150,61 @@
             //Eventlistener til at skifte datasæt med
 
             // Event listeners for dataset buttons
-document.getElementById('dataCapita').addEventListener('click', function() {
-    dataMapToShow = dataMap1;
-    updateMap();
-});
+            document.getElementById('dataCapita').addEventListener('click', function() {
+                dataMapToShow = dataMap1;
+                updateMap('dataCapita');
+            });
 
-document.getElementById('dataOcean').addEventListener('click', function() {
-    dataMapToShow = dataMap2;
-    updateMap();
-});
+            document.getElementById('dataOcean').addEventListener('click', function() {
+                dataMapToShow = dataMap2;
+                updateMap('dataOcean');
+            });
 
-document.getElementById('dataTotal').addEventListener('click', function() {
-    dataMapToShow = dataMap3;
-    updateMap();
-});
+            document.getElementById('dataTotal').addEventListener('click', function() {
+                dataMapToShow = dataMap3;
+                updateMap('dataTotal');
+            });
 
-// Function to update the map based on the selected dataset
-function updateMap() {
-    svg.selectAll("path")
-        .data(topo.features)
-        .transition()
-        .duration(1000)
-        .attr("fill", function (d) {
-            d.total = dataMapToShow.get(d.id) || 0;
-            return colorScale(d.total);
-        });
-}
+            // Function to update the map based on the selected dataset
+            function updateMap(id) {
+                svg.selectAll("path")
+                    .data(topo.features)
+                    .transition()
+                    .duration(1000)
+                    .attr("fill", function (d) {
+                        var currentColorScale = updateColor(id);
+                        d.total = dataMapToShow.get(d.id) || 0;
+                        return currentColorScale(d.total);
+                    });
+            }
+            
+            // Funktion der finder en farveskala baseret på valgt dataset
+            //Skalering af farve
+            function updateColor(id) {
+                switch (id) {
+                    case "dataCapita":
+                        return colorScale1;
+                    case "dataOcean":
+                        return colorScale2;
+                    case "dataTotal":
+                        return colorScale3;
+                    default:
+                        return colorScale1;
+                }
+            }
+            
+
+            var colorScale1 = d3.scaleThreshold()
+                .domain([0, 2, 5, 8, 10, 15, 20, 25, 35, 50])
+                .range(d3.schemeReds[9]);
+
+            var colorScale2 = d3.scaleThreshold()
+                .domain([10, 50, 100, 250, 500, 1000, 5000, 10000, 20000, 50000])
+                .range(d3.schemeBlues[9]);
+
+            var colorScale3 = d3.scaleThreshold()
+                .domain([500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000])
+                .range(d3.schemeReds[9]);
 
 
             // Draw the map
@@ -201,11 +219,6 @@ function updateMap() {
                     .projection(projection)
                 )
 
-                // set the color of each country
-                .attr("fill", function (d) {
-                    d.total = dataMapToShow.get(d.id) || 0;
-                    return colorScale(d.total);
-                })
                 .style("stroke", "black")
                 .attr("class", function(d){ return "Country" } )
                 .style("opacity", .8)
