@@ -99,12 +99,12 @@
                 infoBox.innerHTML += '<p>Mismanaged Plastic Waste Per Capita in Kg: ' + (dataMap1.get(country.id) || 'Data not available') + '</p>';
 
             } else if (dataMapToShow === dataMap2) {
-        infoBox.innerHTML += '<p>Plastic Waste Emitted To The Ocean in Tons: ' + (dataMap2.get(country.id) || 'Data not available') + '</p>';
+                infoBox.innerHTML += '<p>Plastic Waste Emitted To The Ocean in Tons: ' + (dataMap2.get(country.id) || 'Data not available') + '</p>';
 
             } else if (dataMapToShow === dataMap3) {
-        infoBox.innerHTML += '<p>Total Plastic Waste Mismanaged in Tons: ' + (dataMap3.get(country.id) || 'Data not available') + '</p>';
-    }
-}
+                infoBox.innerHTML += '<p>Total Plastic Waste Mismanaged in Tons: ' + (dataMap3.get(country.id) || 'Data not available') + '</p>';
+            }
+        }
         
         
 
@@ -131,8 +131,6 @@
             showData3.forEach(element => {
                 dataMap3.set(element.code, +element.mismanaged);
             });
-
-            
 
 
             //Når musen holdes over et land udfø
