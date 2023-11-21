@@ -181,15 +181,14 @@
             // Funktion der finder en farveskala baseret på valgt dataset
             //Skalering af farve
             function updateColor(id) {
-                switch (id) {
-                    case "dataCapita":
-                        return colorScale1;
-                    case "dataOcean":
-                        return colorScale2;
-                    case "dataTotal":
-                        return colorScale3;
-                    default:
-                        return colorScale1;
+                if (id === "dataCapita") {
+                    return colorScale1;
+                } else if (id === "dataOcean") {
+                    return colorScale2;
+                } else if (id === "dataTotal") {
+                    return colorScale3;
+                } else {
+                    return colorScale1; // Default
                 }
             }
             
