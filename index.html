@@ -179,6 +179,8 @@ document.getElementById('dataTotal').addEventListener('click', function() {
 function updateMap() {
     svg.selectAll("path")
         .data(topo.features)
+        .transition()
+        .duration(1000)
         .attr("fill", function (d) {
             d.total = dataMapToShow.get(d.id) || 0;
             return colorScale(d.total);
