@@ -83,6 +83,11 @@
         .defer(d3.json, "http://localhost:3000/dataocean")//data2
         .defer(d3.json, "http://localhost:3000/datatotal")//data3
         .await(ready);
+
+        // Funktion der filtrere Antarktis ud
+        function filterAntarctica(data) {
+        return data.features.filter(d => d.id !== "ATA");
+        }
         
 
         //Funktion der viser landendes data i en div med id'et "country-info" 
@@ -124,6 +129,10 @@
 
         //Funktion der kaldes på når dataen loader ind
         function ready(error, topo, data1, data2, data3) {
+
+            // Filtrere Antarktis fra topo
+            topo.features = filterAntarctica(topo);
+
             console.log(topo);
             console.log(data1);
             console.log(data2);
