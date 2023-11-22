@@ -134,9 +134,9 @@
             topo.features = filterAntarctica(topo);
 
             console.log(topo);
-            console.log(data1);
-            console.log(data2);
-            console.log(data3);
+            console.log(data1);//data per capita (World Map)
+            console.log(data2);//data emitted to the ocean (World Map)
+            console.log(data3);//data mismanaged plastic waste (World Map)
             console.log(dataMapToShow);
            
 
@@ -269,6 +269,19 @@
 
 //---------------------------------------------------------------------------------------------------------------------------
 // Bar charts 
+
+// Width, height and padding for svg bar elements
+
+
+
+fetch('http://localhost:3000/barchart1')
+  .then(response => response.json())
+  .then(data => {
+console.log(data.data)
+// dataset(data.data) 
+
+  })
+
 
 
 
