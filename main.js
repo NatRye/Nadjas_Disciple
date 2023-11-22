@@ -7,6 +7,10 @@ const { Client } = require("pg");
 const qry1 = "SELECT entity, code, mismanaged FROM capita";
 const qry2 = "SELECT * FROM ocean";
 const qry3 = "SELECT * FROM total";
+const qry4 = "SELECT entity, mismanaged FROM capita WHERE entity = 'United States' OR entity = 'Denmark' OR entity = 'Philippines' OR entity = 'China' OR entity = 'Albania' ORDER BY mismanaged desc;" 
+
+
+
 
 // https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
 const cors = require('cors');
@@ -74,6 +78,23 @@ app.get("/datatotal", async (req, res) => {
         })
     }
 })
+
+//Data til barchart per capita
+app.get("/barchart1", async (req, res) => {
+    try {
+        let queryData = await klient.query(qry4);
+        res.json({
+            "ok": true,
+            "data": queryData.rows,
+        })
+    } catch (error) {
+        res.json({
+            "ok": false,
+            "message": error.message,
+        })
+    }
+})
+
 
 // Express serveren startes
 app.listen(port, () => {
