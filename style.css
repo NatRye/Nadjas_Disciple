@@ -4,6 +4,10 @@
   display: block;
 }
 
+#overskrift {
+  font-size: 70px;
+}
+
 /* Formatering af overskrifter */
 h1, h2 {
   text-align: center;
