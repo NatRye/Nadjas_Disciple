@@ -263,24 +263,79 @@
   <!--------------------------------------------------------------------------------------------------------------------------->
   <!--Bar charts--> 
   
-    <div id="barchart1"></div>
+<div id="barchart1"></div>
 
-    <script>
-        //Width, height and padding for svg bar elements
-  
+<script>
 
-         fetch('http://localhost:3000/barchart1')
-        .then(response => response.json())
-        .then(data => {
-        console.log(data.data)
-        // dataset(data.data) 
+// set the dimensions and margins of the graph
+const margin = { top: 10, right: 30, bottom: 90, left: 40 },
+  bredde = 460 - margin.left - margin.right,
+  højde = 450 - margin.top - margin.bottom;
 
-        
-        
-        })
+// append the svg object to the body of the page
+const svg1 = d3.select("#barchart1")
+  .append("svg")
+  .attr("width", bredde + margin.left + margin.right)
+  .attr("height", højde + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// dataset(data.data) 
+fetch('http://localhost:3000/barchart1')
+  .then(response => response.json())
+  .then(result => {
+    const data = result.data; // Access the data property
+
+    // Check if data is an array
+    if (!Array.isArray(data)) {
+      console.error('Data is not an array:', data);
+      return;
+    }
+
+    // X axis
+    const x = d3.scaleBand()
+      .range([0, bredde])
+      .domain(data.map(d => d.entity))
+      .padding(0.2);
+    svg1.append("g")
+      .attr("transform", `translate(0,${højde})`)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+    // Add Y axis
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(data, d => +d.mismanaged)]) // Convert mismanaged to numbers
+      .range([højde, 0]);
+    svg1.append("g")
+      .call(d3.axisLeft(y));
+
+    // Bars
+    svg1.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", d => x(d.entity))
+      .attr("width", x.bandwidth())
+      .attr("fill", "#69b3a2")
+      .attr("y", d => y(d.mismanaged)) // Adjusted y attribute
+      .attr("height", d => højde - y(d.mismanaged));
+
+    // Animation
+    svg1.selectAll("rect")
+      .transition()
+      .duration(800)
+      .attr("height", d => højde - y(d.mismanaged))
+      .delay((d, i) => i * 100);
+  })
+  .catch(error => console.error('Error fetching data:', error));
 
 
-    </script>
+
+
+
+</script>
 </body>
 </html>
 
