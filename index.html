@@ -302,58 +302,6 @@
             }
     </script>
 
-<script>
-    function dotColor(id) {
-         // Clear existing legend elements
-         svg.selectAll(".legend").remove();
-
-         if (id === "dataCapita") {
-             // Legend squares
-             svg.append("rect").attr("x", 200).attr("y", 230).attr("width", 20).attr("height", 20).style("fill", "#FFFFEA").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 250).attr("width", 20).attr("height", 20).style("fill", "#F2D6A2").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 270).attr("width", 20).attr("height", 20).style("fill", "#F2A25C").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 290).attr("width", 20).attr("height", 20).style("fill", "#D96E48").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 310).attr("width", 20).attr("height", 20).style("fill", "#8C5642").attr("class", "legend");
-             // Legend text
-             svg.append("text").attr("x", 220).attr("y", 240).text(" Text 1 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 260).text(" Text 1 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 280).text(" Text 1 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 300).text(" Text 1 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 320).text(" Text 1 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-         }
-         else if (id === "dataOcean") {
-             // Legend squares
-             svg.append("rect").attr("x", 200).attr("y", 230).attr("width", 20).attr("height", 20).style("fill", "#F8FCFF").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 250).attr("width", 20).attr("height", 20).style("fill", "#B2D5E7").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 270).attr("width", 20).attr("height", 20).style("fill", "#71B1D9").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 290).attr("width", 20).attr("height", 20).style("fill", "#538DC5").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 310).attr("width", 20).attr("height", 20).style("fill", "#3E5A89").attr("class", "legend");
-             // Legend text
-             svg.append("text").attr("x", 220).attr("y", 240).text(" Text 2 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 260).text(" Text 2 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 280).text(" Text 2 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 300).text(" Text 2").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 320).text(" Text 2 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-         }
-         else if (id === "dataTotal") {
-             // Legend squares
-             svg.append("rect").attr("x", 200).attr("y", 230).attr("width", 20).attr("height", 20).style("fill", "#F2F2F2").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 250).attr("width", 20).attr("height", 20).style("fill", "#FDA88F").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 270).attr("width", 20).attr("height", 20).style("fill", "#F4665B").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 290).attr("width", 20).attr("height", 20).style("fill", "#B94848").attr("class", "legend");
-             svg.append("rect").attr("x", 200).attr("y", 310).attr("width", 20).attr("height", 20).style("fill", "#88393F").attr("class", "legend");
-             // Legend text
-             svg.append("text").attr("x", 220).attr("y", 240).text(" Text 3 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 260).text(" Text 3 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 280).text(" Text 3 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 300).text(" Text 3 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-             svg.append("text").attr("x", 220).attr("y", 320).text(" Text 3 ").style("font-size", "15px").attr("alignment-baseline", "middle").attr("class", "legend");
-         }
-         else {
-             console.log("none to show");
-         }
-     }
- </script>
 
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Bar charts--> 
