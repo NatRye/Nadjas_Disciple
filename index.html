@@ -52,8 +52,6 @@
          padding: 10px; 
          border: 1px solid black;">
     </div>
-    <div>Ollo boloo</div>
-
     <script>
         // Svg
         var svg = d3.select("svg"),
@@ -269,13 +267,13 @@
 
 // set the dimensions and margins of the graph
 const margin = { top: 10, right: 30, bottom: 90, left: 40 },
-  bredde = 460 - margin.left - margin.right,
+  bredde = 500 - margin.left - margin.right,
   højde = 450 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg1 = d3.select("#barchart1")
   .append("svg")
-  .attr("width", bredde + margin.left + margin.right)
+  .attr("width", bredde + margin.left + margin.right + 1000)
   .attr("height", højde + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -304,6 +302,24 @@ fetch('http://localhost:3000/barchart1')
       .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
 
+      descriptionText = "This bar chart visualizes the extent of plastic pollution on a per capita basis across different\n countries. The height of each bar represents the amount of mismanaged plastic waste, measured\n in kilograms, for each country's population. A higher bar indicates a higher level of plastic waste\n generated per person.\n\n\n The chart aims to highlight variations in the mismanagement of plastic waste, emphasizing the\n need for sustainable waste management practices to mitigate the environmental impact of plastic\n pollution. Explore the data to gain insights into the countries that face significant challenges in\n handling plastic waste on a per capita basis. ";
+
+      svg1.append("text")
+  .attr("x", bredde + margin.right + 40)  // Adjusted x position
+  .attr("y", højde / 2)  // Adjusted y position
+  .attr("transform", "rotate(0)")
+  .style("text-anchor", "start")  // Changed text-anchor to "start"
+  .style("font-size", "20px")  // Changed font size
+  .style("font-family", "Roobert,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif")
+  .selectAll("tspan")
+  .data(descriptionText.split("\n"))
+  .enter()
+  .append("tspan")
+  .attr("x", bredde + margin.right + 40)  // Same x position for each line
+  .attr("dy", "1em")  // Adjust vertical spacing between lines
+  .text(d => d);
+
+
     // Add Y axis
     const y = d3.scaleLinear()
       .domain([0, d3.max(data, d => +d.mismanaged)]) // Convert mismanaged to numbers
@@ -321,6 +337,8 @@ fetch('http://localhost:3000/barchart1')
       .attr("fill", "#69b3a2")
       .attr("y", d => y(d.mismanaged)) // Adjusted y attribute
       .attr("height", d => højde - y(d.mismanaged));
+
+      
 
     // Animation
     svg1.selectAll("rect")
