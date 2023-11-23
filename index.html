@@ -311,7 +311,7 @@
     // append the svg object to the body of the page
     const svg1 = d3.select("#barchart1")
         .append("svg")
-        .attr("width", bredde + margin.left + margin.right + 1000)  // Increased width for text
+        .attr("width", bredde + margin.left + margin.right + 700)  // Increased width for text
         .attr("height", højde + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -322,11 +322,11 @@
         .then(result => {
     const data = result.data; // Access the data property
 
-    descriptionText = "This bar chart visualizes the extent of plastic pollution on a per capita basis across different\n countries. The height of each bar represents the amount of mismanaged plastic waste, measured\n in kilograms, for each country's population. A higher bar indicates a higher level of plastic waste\n generated per person.\n\n\n The chart aims to highlight variations in the mismanagement of plastic waste, emphasizing the\n need for sustainable waste management practices to mitigate the environmental impact of plastic\n pollution. Explore the data to gain insights into the countries that face significant challenges in\n handling plastic waste on a per capita basis. ";
+    descriptionText = "This bar chart visualizes the extent of plastic pollution\n on a per capita basis across different countries.\n The height of each bar represents\n the amount of mismanaged plastic waste,\n measured in kilograms, for each country's population.\n A higher bar indicates a higher level of plastic waste\n generated per person.\n\n\n The chart aims to highlight variations\n in the mismanagement of plastic waste,\n emphasizing the need for sustainable waste management \n practices to mitigate the environmental impact of plastic pollution.\n Explore the data to gain insights\n into the countries that face significant challenges in\n handling plastic waste on a per capita basis. ";
 
     svg1.append("text")
-        .attr("x", bredde + margin.right + 40)  // Adjusted x position
-        .attr("y", højde / 2)  // Adjusted y position
+        .attr("x", bredde + margin.right - 30)  // Adjusted x position
+        .attr("y", højde / 6)  // Adjusted y position
         .attr("transform", "rotate(0)")
         .style("text-anchor", "start")  // Changed text-anchor to "start"
         .style("font-size", "20px")  // Changed font size
@@ -335,7 +335,7 @@
         .data(descriptionText.split("\n"))
         .enter()
         .append("tspan")
-        .attr("x", bredde + margin.right + 40)  // Same x position for each line
+        .attr("x", bredde + margin.right - 30)  // Same x position for each line
         .attr("dy", "1em")  // Adjust vertical spacing between lines
         .text(d => d);
 
@@ -412,8 +412,8 @@
         .attr("x", d => x(d.entity))
         .attr("width", x.bandwidth())
         .attr("fill", d => colorScale(d.mismanaged)) 
-        .attr("y", d => y(d.mismanaged)) // Adjusted y attribute
-        .attr("height", d => højde - y(d.mismanaged))
+        .attr("y", d => y(0)) // Start at the base
+        .attr("height", 0)    // Initially, the height is 0
         .on("mouseover", mouseOverBar)
         .on("mouseleave", mouseLeaveBar);
 
@@ -424,7 +424,7 @@
         .attr("y", d => y(d.mismanaged))
         .attr("height", d => højde - y(d.mismanaged))
         .delay((d, i) => i * 100);
-        })
+    })
         .catch(error => console.error('Error fetching data:', error));
 
     </script>
