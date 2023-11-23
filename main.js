@@ -7,7 +7,7 @@ const { Client } = require("pg");
 const qry1 = "SELECT entity, code, mismanaged FROM capita";
 const qry2 = "SELECT * FROM ocean";
 const qry3 = "SELECT * FROM total";
-const qry4 = "SELECT entity, mismanaged FROM capita WHERE entity = 'United States' OR entity = 'Denmark' OR entity = 'Philippines' OR entity = 'China' OR entity = 'Albania' ORDER BY mismanaged desc;" 
+const qry4 = "SELECT entity, mismanaged FROM capita WHERE entity = 'United States' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;" 
 
 
 
