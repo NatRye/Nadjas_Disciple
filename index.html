@@ -312,7 +312,7 @@ fetch('http://localhost:3000/barchart1')
 
     // Add Y axis
     const y = d3.scaleLinear()
-      .domain([0, d3.max(data, d => +d.mismanaged)]) // Convert mismanaged to numbers
+      .domain([0, d3.max(data, d => +d.mismanaged)])
       .range([højde, 0]);
     svg1.append("g")
       .call(d3.axisLeft(y));
@@ -325,17 +325,19 @@ fetch('http://localhost:3000/barchart1')
       .attr("x", d => x(d.entity))
       .attr("width", x.bandwidth())
       .attr("fill", "#69b3a2")
-      .attr("y", d => y(d.mismanaged))
-      .attr("height", d => højde - y(d.mismanaged));
+      .attr("y", d => y(0)) // Start at the base
+      .attr("height", 0)    // Initially, the height is 0
 
     // Animation
     svg1.selectAll("rect")
       .transition()
       .duration(800)
+      .attr("y", d => y(d.mismanaged))
       .attr("height", d => højde - y(d.mismanaged))
       .delay((d, i) => i * 100);
   })
   .catch(error => console.error('Error fetching data:', error));
+
 
 
 
