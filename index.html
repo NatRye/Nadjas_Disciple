@@ -419,8 +419,8 @@
         .attr("x", d => x(d.entity))
         .attr("width", x.bandwidth())
         .attr("fill", d => colorScale(d.mismanaged)) 
-        .attr("y", d => y(d.mismanaged)) // Adjusted y attribute
-        .attr("height", d => højde - y(d.mismanaged))
+        .attr("y", d => y(0)) // Start at the base
+        .attr("height", 0)    // Initially, the height is 0
         .on("mouseover", mouseOverBar)
         .on("mouseleave", mouseLeaveBar);
 
@@ -431,7 +431,7 @@
         .attr("y", d => y(d.mismanaged))
         .attr("height", d => højde - y(d.mismanaged))
         .delay((d, i) => i * 100);
-        })
+    })
         .catch(error => console.error('Error fetching data:', error));
 
     </script>
