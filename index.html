@@ -118,12 +118,22 @@
         }
         
         // Define legend data for each dataset
-        const legendData1 = [{ x: 200, y: [230, 250, 270, 290, 310], fill: ["#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"], text: "Text 1" }];
-        const legendData2 = [{ x: 220, y: [240, 260, 280, 300, 320], fill: ["#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"], text: "Text 2" }];
-        const legendData3 = [{ x: 240, y: [240, 260, 280, 300, 320], fill: ["#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"], text: "Text 3" }];
+        const legendData = [
+            { x: 70, y: [100, 120, 140, 160, 180], 
+              fill: ["#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"], 
+              text: ["Text 1", "haha", "haha", "nej", "jes"]},
 
+            { x: 70, y: [100, 120, 140, 160, 180], 
+              fill: ["#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"], 
+              text: ["Text 1", "tecks", "haha", "nej", "jes"]},
+
+            { x: 70, y: [100, 120, 140, 160, 180], 
+              fill: ["#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
+              text: ["Text 1", "tecks", "haha", "nej", "jes"]}
+        ];
+        
         // Loop through the legend data and create legend squares and text
-        legendData1,legendData2,legendData3.forEach((item, dataIndex) => {
+        legendData.forEach((item, dataIndex) => {
             item.y.forEach((y, index) => {
                 // Legend squares
                 svg.append("rect")
@@ -155,7 +165,7 @@
             else if (id === "dataTotal") {return{legendData3}}
             else {console.log("none to show");}
         }
-        
+
 
         //Funktion der kaldes på når dataen loader ind
         function ready(error, topo, data1, data2, data3) {
