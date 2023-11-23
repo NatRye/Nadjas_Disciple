@@ -92,39 +92,37 @@
 
         //Funktion der viser landendes data i en div med id'et "country-info" 
         function showCountryData(country) {
-        var infoBox = d3.select('#country-info');
+            var infoBox = d3.select('#country-info');
 
-        // Transistion der starter på infoboxen, som så derefter kører functionen med if statements der afgør hvilket datasæt der skal vises
-        infoBox.transition()
-            .duration(300)
-            .style('opacity', 0)
-            .on('end', function () {
-        infoBox.html('<h2>' + country.properties.name + '</h2>');
+            // Transistion der starter på infoboxen, som så derefter kører functionen med if statements der afgør hvilket datasæt der skal vises
+            infoBox.transition()
+                .duration(300)
+                .style('opacity', 0)
+                .on('end', function () {
+                infoBox.html('<h2>' + country.properties.name + '</h2>');
 
-        const dataValue = dataMapToShow.get(country.id) || 'Data not available';
-        let dataType = '';
+                const dataValue = dataMapToShow.get(country.id) || 'Data not available';
+                let dataType = '';
 
-        if (dataMapToShow === dataMap1) {
-                dataType = 'Mismanaged Plastic Waste Per Capita in Kg';
+                if (dataMapToShow === dataMap1) {
+                    dataType = 'Mismanaged Plastic Waste Per Capita in Kg';
 
-        } else if (dataMapToShow === dataMap2) {
-                dataType = 'Plastic Waste Emitted To The Ocean in Tons';
+                } else if (dataMapToShow === dataMap2) {
+                    dataType = 'Plastic Waste Emitted To The Ocean in Tons';
 
-        } else if (dataMapToShow === dataMap3) {
-                dataType = 'Total Plastic Waste Mismanaged in Tons';
-            }
+                } else if (dataMapToShow === dataMap3) {
+                    dataType = 'Total Plastic Waste Mismanaged in Tons';
+                }
 
-        infoBox.append('p')
-            .html(dataType + ': <span class="data-value">' + dataValue + '</span>');
+                infoBox.append('p')
+                .html(dataType + ': <span class="data-value">' + dataValue + '</span>');
 
-        // Transistion er indpakket rundt om hele indholdet 
-        infoBox.transition()
-            .duration(300)
-            .style('opacity', 1);
-        });
-}
-
-
+                // Transistion er indpakket rundt om hele indholdet 
+                infoBox.transition()
+                .duration(300)
+                .style('opacity', 1);
+            });
+        }
         
 
         //Funktion der kaldes på når dataen loader ind
@@ -139,7 +137,6 @@
             console.log(data3);//data mismanaged plastic waste (World Map)
             console.log(dataMapToShow);
            
-
             //kolonner i hvert dataset udvælges og knyttes til en variabel
             let showData1 = data1.data;
             showData1.forEach(element => {
@@ -203,14 +200,14 @@
             // Function to update the map based on the selected dataset
             function updateMap(id) {
                 svg.selectAll("path")
-                    .data(topo.features)
-                    .transition()
-                    .duration(1000)
-                    .attr("fill", function (d) {
-                        var currentColorScale = updateColor(id);
-                        d.total = dataMapToShow.get(d.id) || 0;
-                        return currentColorScale(d.total);
-                    });
+                .data(topo.features)
+                .transition()
+                .duration(1000)
+                .attr("fill", function (d) {
+                    var currentColorScale = updateColor(id);
+                    d.total = dataMapToShow.get(d.id) || 0;
+                    return currentColorScale(d.total);
+                });
             }
 
             
@@ -230,16 +227,16 @@
 
             //Skaleringer af farve
             var colorScale1 = d3.scaleThreshold()
-                .domain([1, 2, 5, 8, 10, 15, 20, 25, 35, 50])
-                .range(d3.schemeYlOrBr[9]);
+            .domain([1, 2, 5, 8, 10, 15, 20, 25, 35, 50])
+            .range(d3.schemeYlOrBr[9]);
 
             var colorScale2 = d3.scaleThreshold()
-                .domain([10, 50, 100, 250, 500, 1000, 5000, 10000, 20000, 50000])
-                .range(d3.schemeBlues[9]);
+            .domain([10, 50, 100, 250, 500, 1000, 5000, 10000, 20000, 50000])
+            .range(d3.schemeBlues[9]);
 
             var colorScale3 = d3.scaleThreshold()
-                .domain([500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000])
-                .range(d3.schemeReds[9]);
+            .domain([500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000])
+            .range(d3.schemeReds[9]);
 
 
             // Draw the map
@@ -259,31 +256,24 @@
             .on("mouseover", mouseOver )
             .on("mouseleave", mouseLeave )
 
-                // her køres den funktion vi lavede før, med at vise landene.
+            // her køres den funktion vi lavede før, med at vise landene.    
+            .on("click", function(d) {  
+                showCountryData(d);
+            });
                 
-                .on("click", function(d) {  
-                        showCountryData(d);
-                });
-                
-            }
+        }
 
-//---------------------------------------------------------------------------------------------------------------------------
-// Bar charts 
+        //---------------------------------------------------------------------------------------------------------------------------
+        // Bar charts 
+        // Width, height and padding for svg bar elements
 
-// Width, height and padding for svg bar elements
-
-
-
-fetch('http://localhost:3000/barchart1')
-  .then(response => response.json())
-  .then(data => {
-console.log(data.data)
-// dataset(data.data) 
-
-  })
-
-
-
+        fetch('http://localhost:3000/barchart1')
+        .then(response => response.json())
+        .then(data => {
+        console.log(data.data)
+        // dataset(data.data) 
+        
+        })
 
 
     </script>
