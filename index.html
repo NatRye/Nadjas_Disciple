@@ -285,6 +285,7 @@ fetch('http://localhost:3000/barchart1')
   .then(response => response.json())
   .then(result => {
     const data = result.data; // Access the data property
+    console.log(result.data)
 
     // Check if data is an array
     if (!Array.isArray(data)) {
@@ -311,6 +312,44 @@ fetch('http://localhost:3000/barchart1')
     svg1.append("g")
       .call(d3.axisLeft(y));
 
+
+ //Når musen holdes over et land udføres
+let mouseOverBar = function(d) {
+  // Tooltip
+  const tooltip = svg1.append("text")
+    .attr("class", "tooltip")
+    .text(d.mismanaged)
+    .attr("x", x(d.entity) + x.bandwidth() / 2)
+    .attr("y", y(d.mismanaged) - 2)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "12px")
+    .attr("fill", "black");
+
+  // Highlight the bar
+  d3.select(this)
+    .style("opacity", 0.25)
+    .style("stroke", "black");
+};
+
+// Hide value on mouseleave
+let mouseLeaveBar = function() {
+  // Remove tooltip
+  svg1.selectAll(".tooltip").remove();
+
+  // Unhighlight the bar
+  d3.select(this)
+    .style("opacity", 1)
+    .style("stroke", "none");
+};
+
+// Create a linear color scale
+const colorScale = d3.scaleLinear()
+  .domain([0, d3.max(data, d => +d.mismanaged)])
+  .range(["orange", "red"]); // Adjust the range of colors as needed
+
+
+
     // Bars
     svg1.selectAll("rect")
       .data(data)
@@ -318,9 +357,11 @@ fetch('http://localhost:3000/barchart1')
       .append("rect")
       .attr("x", d => x(d.entity))
       .attr("width", x.bandwidth())
-      .attr("fill", "#69b3a2")
+      .attr("fill", d => colorScale(d.mismanaged)) 
       .attr("y", d => y(d.mismanaged)) // Adjusted y attribute
-      .attr("height", d => højde - y(d.mismanaged));
+      .attr("height", d => højde - y(d.mismanaged))
+      .on("mouseover", mouseOverBar)
+      .on("mouseleave", mouseLeaveBar);
 
     // Animation
     svg1.selectAll("rect")
