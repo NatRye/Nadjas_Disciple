@@ -177,16 +177,19 @@
             document.getElementById('dataCapita').addEventListener('click', function() {
                 dataMapToShow = dataMap1;
                 updateMap('dataCapita');
+                var currentLegend = updateLegend('dataCapita');
             });
 
             document.getElementById('dataOcean').addEventListener('click', function() {
                 dataMapToShow = dataMap2;
                 updateMap('dataOcean');
+                var currentLegend = updateLegend('dataOcean');
             });
 
             document.getElementById('dataTotal').addEventListener('click', function() {
                 dataMapToShow = dataMap3;
                 updateMap('dataTotal');
+                var currentLegend = updateLegend('dataTotal');
             });
 
 
@@ -218,43 +221,57 @@
             }
             
             // Defining legend data for hvert dataset
-            const legendData = [
-                {x: 70, y: [100, 120, 140, 160, 180], fill: ["#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"], text: ["Text 1", "haha"]},
-                {x: 70, y: [100, 120, 140, 160, 180], fill: ["#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"], text: ["Text 1", "tecks"]},
-                {x: 70, y: [100, 120, 140, 160, 180], fill: ["#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"], text: ["Text 1", "tecks"]}
+            var legendData = [
+                {x: 70, y: [100, 120, 140, 160, 180], fill: ["#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"], text: ["Text 1", "haha"], class: "legend"},
+                {x: 90, y: [100, 120, 140, 160, 180], fill: ["#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"], text: ["Text 1", "tecks"],class: "legend"},
+                {x: 110, y: [100, 120, 140, 160, 180], fill: ["#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"], text: ["Text 1", "tecks"], class: "legend"}
             ];
 
-            // Loop through the legend data and create legend squares and text
-            legendData.forEach((item, dataIndex) => {
-                item.y.forEach((y, index) => {
-                    // Legend squares
-                    svg.append("rect")
-                        .attr("x", item.x)
-                        .attr("y", y)
-                        .attr("width", 20)
-                        .attr("height", 20)
-                        .style("fill", item.fill[index])
-                        .attr("class", "legend");
 
-                    // Legend text
-                    svg.append("text")
-                        .attr("x", item.x + 20)
-                        .attr("y", y + 10)
-                        .text(item.text[index])
-                        .style("font-size", "15px")
-                        .attr("alignment-baseline", "middle")
-                        .attr("class", "legend");
+            // Function to update the legend based on the selected dataset
+            function updateLegend(id) {
+                // Remove the existing legend
+                svg.selectAll(".legend").remove();
+
+                // Loop through the legend data and create legend squares and text
+                legendData.forEach((item, dataIndex) => {
+                    item.y.forEach((y, index) => {
+                        // Legend squares
+                        svg.append("rect")
+                            .attr("x", item.x)
+                            .attr("y", y)
+                            .attr("width", 20)
+                            .attr("height", 20)
+                            .style("fill", item.fill[index])
+                            .attr("class", "legend");
+
+                        // Legend text
+                        svg.append("text")
+                            .attr("x", item.x + 20)
+                            .attr("y", y + 10)
+                            .text(item.text[index])
+                            .style("font-size", "15px")
+                            .attr("alignment-baseline", "middle")
+                            .attr("class", "legend");
+                    });
                 });
-            });
 
-            function dotColor(id) {
-                // Clear existing legend elements
-                svg.selectAll(legendData1,legendData2,legendData3).remove();
-                if (id === "dataCapita") {return legendData1;} 
-                else if (id === "dataOcean") {return legendData2;} 
-                else if (id === "dataTotal") {return legendData3;} 
-                else {console.log("none to show"); return [];}
+                var currentLegend;
+
+                if (id === "dataCapita") {
+                    currentLegend = legendData[0];
+                } else if (id === "dataOcean") {
+                    currentLegend = legendData[1];
+                } else if (id === "dataTotal") {
+                    currentLegend = legendData[2];
+                } else {
+                    currentLegend = []; // Default
+                }
             }
+                        
+            
+
+            
 
 
             //Skaleringer af farve
