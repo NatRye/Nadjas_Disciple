@@ -202,7 +202,10 @@
                 .attr("fill", function (d) {
                     var currentColorScale = updateColor(id);
                     d.total = dataMapToShow.get(d.id) || 0;
-                    return currentColorScale(d.total);
+
+                    // Check if data is available and set default color for countries with no data
+                    if (d.total === 0) {return "gray"; }
+                    else { return currentColorScale(d.total);}
                 });
             }
 
@@ -231,24 +234,24 @@
                     var currentLegend;
                     if (id === "dataCapita") {
                         currentLegend = {
-                            x: 70,
-                            y: [100, 120, 140, 160, 180],
-                            fill: ["#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"],
-                            text: ["1 Kg.", "10 Kg.", "15 Kg.", "20 Kg.", "50 Kg."]
+                            x: 50,
+                            y: [80, 100, 120, 140, 160, 180],
+                            fill: ["grey", "#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"],
+                            text: ["No data", "1 Kg.", "10 Kg.", "15 Kg.", "20 Kg.", "50 Kg."]
                         };
                     } else if (id === "dataOcean") {
                         currentLegend = {
-                            x: 70,
-                            y: [100, 120, 140, 160, 180],
-                            fill: ["#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"],
-                            text: ["10 Tons", "250 Tons", "1.000 Tons", "10.000 Tons", "50.000 Tons"]
+                            x: 50,
+                            y: [80, 100, 120, 140, 160, 180],
+                            fill: ["grey", "#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"],
+                            text: ["No data", "10 Tons", "250 Tons", "1.000 Tons", "10.000 Tons", "50.000 Tons"]
                         };
                     } else if (id === "dataTotal") {
                         currentLegend = {
-                            x: 70,
-                            y: [100, 120, 140, 160, 180],
-                            fill: ["#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
-                            text: ["500 Tons", "50.000 Tons", "100.000 Tons", "1 mil Tons", "3 mil Tons"]
+                            x: 50,
+                            y: [80, 100, 120, 140, 160, 180],
+                            fill: ["grey", "#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
+                            text: ["No data", "500 Tons", "50.000 Tons", "100.000 Tons", "1 mil Tons", "3 mil Tons"]
                         };
                     } else {
                         currentLegend = {}; // Default
