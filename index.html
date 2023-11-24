@@ -234,25 +234,27 @@
                             x: 70,
                             y: [100, 120, 140, 160, 180],
                             fill: colorScale1.range(),
-                            text: ["Text 1", "haha"]
+                            text: ["1 Tons", "10 Tons", "15 Tons", "20 Tons", "50 Tons"]
                         };
                     } else if (id === "dataOcean") {
                         currentLegend = {
                             x: 70,
                             y: [100, 120, 140, 160, 180],
                             fill: colorScale2.range(),
-                            text: ["Text 1", "tecks"]
+                            text: ["10 Tons", "250 Tons", "1.000 Tons", "10.000 Tons", "50.000 Tons"]
                         };
                     } else if (id === "dataTotal") {
                         currentLegend = {
                             x: 70,
                             y: [100, 120, 140, 160, 180],
                             fill: colorScale3.range(),
-                            text: ["Text 1", "tecks"]
+                            text: ["500 Tons", "50.000 Tons", "100.000 Tons", "10 mil Tons", "20 mil Tons"]
                         };
                     } else {
                         currentLegend = {}; // Default
                     }
+
+                    
 
                 // Loop through the legend data and create legend squares and text
                 currentLegend.y.forEach((y, index) => {
