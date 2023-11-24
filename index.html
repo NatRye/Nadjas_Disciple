@@ -258,12 +258,15 @@
                 currentLegend.y.forEach((y, index) => {
                     // Legend squares
                     svg.append("rect")
+                        .transition()
+                        .duration(1000)
                         .attr("x", currentLegend.x)
                         .attr("y", y)
                         .attr("width", 20)
                         .attr("height", 20)
                         .style("fill", currentLegend.fill[index])
-                        .attr("class", "legend");
+                        .attr("class", "legend")
+                        
 
                     // Legend text
                     svg.append("text")
