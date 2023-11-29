@@ -64,22 +64,63 @@
     <!-- Her laver vi et element der skal indeholder landenes data. Vi har givet dette element med id'et "country-info"-->
     <div id="country-info"></div>
 
-    <div>
-      <h3 id="titelPerCapita" , style="right: 5%; text-decoration: underline">
-        Mismanaged Plastic Waste Per Capita
-      </h3>
-    </div>
-
     <!-- referencer til js filerne-->
     <script src="worldmap.js" defer></script>
 
-    <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Bar charts-->
-    <div id="barchart1"></div>
-    <script src="barchartEt.js" defer></script>
+    <h3 id="titelPerCapita">Mismanaged Plastic Waste Per Capita</h3>
+    <div class="grid-container">
+      <div class="grid-item" id="barchart1"></div>
+      <p class="grid-item" id="tekstOcean">
+        This bar chart visualizes the extent of plastic pollution on a per
+        capita basis across different countries. The height of each bar
+        represents the amount of mismanaged plastic waste, measured in
+        kilograms, for each country's population. A higher bar indicates a
+        higher level of plastic waste generated per person. The chart aims to
+        highlight variations in the mismanagement of plastic waste, emphasizing
+        the need for sustainable waste management practices to mitigate the
+        environmental impact of plastic pollution. Explore the data to gain
+        insights into the countries that face significant challenges in handling
+        plastic waste on a per capita basis.
+      </p>
+      <script src="barchartEt.js" defer></script>
+    </div>
 
-    <div id="barchart3"></div>
-    <script src="barchartTre.js" defer></script>
+    <h3 id="titelOcean">Plastic Waste Emitted To The Ocean</h3>
+    <div class="grid-container">
+      <p class="grid-item" id="tekstOcean">
+        This bar chart visualizes the extent of plastic pollution on a per
+        capita basis across different countries. The height of each bar
+        represents the amount of mismanaged plastic waste, measured in
+        kilograms, for each country's population. A higher bar indicates a
+        higher level of plastic waste generated per person. The chart aims to
+        highlight variations in the mismanagement of plastic waste, emphasizing
+        the need for sustainable waste management practices to mitigate the
+        environmental impact of plastic pollution. Explore the data to gain
+        insights into the countries that face significant challenges in handling
+        plastic waste on a per capita basis.
+      </p>
+      <div class="grid-item" id="barchart2"></div>
+      <script src="barchartTo.js"></script>
+    </div>
+
+    <h3 id="titelTotal">Total Mismanaged Plastic Waste Mismanaged</h3>
+    <div class="grid-container">
+      <div class="grid-item" id="barchart3"></div>
+      <p class="grid-item" id="tekstOcean">
+        This bar chart visualizes the extent of plastic pollution on a per
+        capita basis across different countries. The height of each bar
+        represents the amount of mismanaged plastic waste, measured in
+        kilograms, for each country's population. A higher bar indicates a
+        higher level of plastic waste generated per person. The chart aims to
+        highlight variations in the mismanagement of plastic waste, emphasizing
+        the need for sustainable waste management practices to mitigate the
+        environmental impact of plastic pollution. Explore the data to gain
+        insights into the countries that face significant challenges in handling
+        plastic waste on a per capita basis.
+      </p>
+      <script src="barchartTre.js" defer></script>
+    </div>
 
     <!--
     Bar chart "mismanaged plastic waste emitted to the ocean" med seks bestemte lande-

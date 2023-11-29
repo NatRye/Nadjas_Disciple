@@ -17,9 +17,6 @@ fetch("http://localhost:3000/barchart3")
   .then((result) => {
     const data = result.data; // Access the data property
 
-    descriptionText =
-      "This bar chart visualizes the extent of plastic pollution\n on a per capita basis across different countries.\n The height of each bar represents\n the amount of mismanaged plastic waste,\n measured in kilograms, for each country's population.\n A higher bar indicates a higher level of plastic waste\n generated per person.\n\n\n The chart aims to highlight variations\n in the mismanagement of plastic waste,\n emphasizing the need for sustainable waste management \n practices to mitigate the environmental impact of plastic pollution.\n Explore the data to gain insights\n into the countries that face significant challenges in\n handling plastic waste on a per capita basis. ";
-
     svg3
       .append("text")
       .attr("x", bredde + margin.right) // Adjusted x position
@@ -30,16 +27,7 @@ fetch("http://localhost:3000/barchart3")
       .style(
         "font-family",
         "Roobert,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif"
-      )
-      .style("border", "px solid black") // Added border style
-      .style("padding", "15px") // Added padding for better readability
-      .selectAll("tspan")
-      .data(descriptionText.split("\n"))
-      .enter()
-      .append("tspan")
-      .attr("x", bredde + margin.right - 30) // Same x position for each line
-      .attr("dy", "1em") // Adjust vertical spacing between lines
-      .text((d) => d);
+      );
 
     // Y axis
     const y = d3
@@ -51,17 +39,17 @@ fetch("http://localhost:3000/barchart3")
       .append("g")
       .call(d3.axisLeft(y))
       .selectAll("text")
-      .attr("transform", "translate(-10,0)")
+      .attr("transform", "translate(-5,0)")
       .style("text-anchor", "end");
 
     // X axis label
     svg3
       .append("text")
       .attr("text-anchor", "center")
-      .attr("y", højde + margin.bottom - 20)
-      .attr("x", bredde / 2)
+      .attr("y", højde + margin.bottom - 100)
+      .attr("x", bredde / 3)
       .style("font-size", "20px")
-      .text("Ton. per year");
+      .text("Tons per year");
 
     // Add X axis
     const x = d3
