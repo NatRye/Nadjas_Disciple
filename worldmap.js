@@ -206,7 +206,7 @@ function ready(error, topo, data1, data2, data3) {
           "500 - 50.000 Tons",
           "50.000 - 100.000 Tons",
           "100.000 - 1.5 mil. Tons",
-          "1 mil. - 13 mil. Tons",
+          "1.5 mil. - 13 mil. Tons",
         ],
       };
     } else {
