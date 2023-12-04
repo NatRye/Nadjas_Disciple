@@ -1,13 +1,13 @@
-// set the dimensions and margins of the graph
+// sætter dimensioner til visualiseringen
 const margin2 = { top: 10, right: 30, bottom: 90, left: 60 };
 const bredde2 = 600 - margin2.left - margin2.right;
 const højde2 = 500 - margin2.top - margin2.bottom;
 
-// append the svg object to the body of the page
+// appender svg objektet til body med select på id
 const svg2 = d3
   .select("#barchart2")
   .append("svg")
-  .attr("width", bredde2 + margin2.left + margin2.right) // Increased width for text
+  .attr("width", bredde2 + margin2.left + margin2.right)
   .attr("height", højde2 + margin2.top + margin2.bottom)
   .append("g")
   .attr("transform", `translate(${margin2.left},${margin2.top})`);
@@ -16,27 +16,9 @@ const svg2 = d3
 fetch("http://localhost:3000/barchart2")
   .then((response) => response.json())
   .then((result) => {
-    const data = result.data; // Access the data property
+    const data = result.data; // tilgår data property
 
-    svg2
-      .append("text")
-      .attr("x", bredde2 + margin2.right - 30) // Adjusted x position
-      .attr("y", højde2 / 6) // Adjusted y position
-      .attr("transform", "rotate(0)")
-      .style("text-anchor", "start") // Changed text-anchor to "start"
-      .style("font-size", "20px") // Changed font size
-      .style(
-        "font-family",
-        "Roobert,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif"
-      )
-      .selectAll("tspan")
-      .enter()
-      .append("tspan")
-      .attr("x", bredde2 + margin2.right - 30) // Same x position for each line
-      .attr("dy", "1em") // Adjust vertical spacing between lines
-      .text((d) => d);
-
-    // X axis
+    // X akse
     const x = d3
       .scaleBand()
       .range([0, bredde2])
@@ -50,7 +32,7 @@ fetch("http://localhost:3000/barchart2")
       .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
 
-    // Y axis label
+    // Y akse label
     svg2
       .append("text")
       .attr("text-anchor", "center")
@@ -60,7 +42,7 @@ fetch("http://localhost:3000/barchart2")
       .attr("transform", "rotate(-90)")
       .text("Tons per year");
 
-    // Add Y axis
+    // Y akse
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => +d.mismanaged)])
@@ -81,20 +63,20 @@ fetch("http://localhost:3000/barchart2")
         .attr("font-size", "12px")
         .attr("fill", "black");
 
-      // Highlight the bar
+      // Highlight på bar
       d3.select(this).style("opacity", 0.25).style("stroke", "black");
     };
 
-    // Hide value on mouseleave
+    // Gem value når mouseleave
     let mouseLeaveBar = function () {
-      // Remove tooltip
+      // fjern tooltip
       svg2.selectAll(".tooltip").remove();
 
-      // Unhighlight the bar
+      // Unhighlight baren
       d3.select(this).style("opacity", 1).style("stroke", "none");
     };
 
-    // Create a linear color scale
+    // color scale
     const colorScale = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => +d.mismanaged)])

@@ -17,7 +17,7 @@ var dataMap1 = d3.map(); //Map for datasæt 1
 var dataMap2 = d3.map(); //Map for datasæt 2
 var dataMap3 = d3.map(); //Map for datasæt 3
 
-// Load external data and boot
+// data
 d3.queue()
   .defer(
     d3.json,
@@ -70,12 +70,6 @@ function ready(error, topo, data1, data2, data3) {
   // Filtrere Antarktis fra topo
   topo.features = filterAntarctica(topo);
 
-  console.log(topo);
-  console.log(data1); //data per capita (World Map)
-  console.log(data2); //data emitted to the ocean (World Map)
-  console.log(data3); //data mismanaged plastic waste (World Map)
-  console.log(dataMapToShow);
-
   //kolonner i hvert dataset udvælges og knyttes til en variabel
   let showData1 = data1.data;
   showData1.forEach((element) => {
@@ -127,7 +121,7 @@ function ready(error, topo, data1, data2, data3) {
     var currentLegend = updateLegend("dataTotal");
   });
 
-  // Function to update the map based on the selected dataset
+  // Function til at opdatere kortet baseret på det valgte datasæt
   function updateMap(id) {
     svg
       .selectAll("path")
@@ -138,7 +132,7 @@ function ready(error, topo, data1, data2, data3) {
         var currentColorScale = updateColor(id);
         d.total = dataMapToShow.get(d.id) || 0;
 
-        // Check if data is available and set default color for countries with no data
+        // Check om data er 'not available' og sæt standard farve for lande med intet data
         if (d.total === 0) {
           return "gray";
         } else {
@@ -156,16 +150,16 @@ function ready(error, topo, data1, data2, data3) {
     } else if (id === "dataTotal") {
       return colorScale3;
     } else {
-      return colorScale1; // Default
+      return colorScale1;
     }
   }
 
-  // Function to update the legend based on the selected dataset
+  // Function ttil at opdatere legend baseret på det valgte datasæt
   function updateLegend(id) {
     // Remove the existing legend
     svg.selectAll(".legend").remove();
 
-    // Define legend elements dynamically based on the selected dataset
+    // Definer legend elementer dynamisk baseret på det valgte datasæt
     var currentLegend;
     if (id === "dataCapita") {
       currentLegend = {
@@ -210,12 +204,12 @@ function ready(error, topo, data1, data2, data3) {
         ],
       };
     } else {
-      currentLegend = {}; // Default
+      currentLegend = {}; //default
     }
 
-    // Loop through the legend data and create legend squares and text
+    // Loop gennem legend data og lave legend firkanter og tekst
     currentLegend.y.forEach((y, index) => {
-      // Legend squares
+      // Legend firkanter
       svg
         .append("rect")
         .transition()
@@ -227,7 +221,7 @@ function ready(error, topo, data1, data2, data3) {
         .style("fill", currentLegend.fill[index])
         .attr("class", "legend");
 
-      // Legend text
+      // Legend tekst
       svg
         .append("text")
         .attr("x", currentLegend.x + 20)
@@ -239,10 +233,10 @@ function ready(error, topo, data1, data2, data3) {
     });
 
     function updateLegend(id) {
-      // Remove the existing legend
+      // fjerner den eksisterende legend
       svg.selectAll(".legend").remove();
 
-      // Show/hide the legend based on the button click
+      // Vis/gem legend baseret på button click
       if (id === "dataCapita") {
         svg.selectAll(".legend").style("display", "block");
       } else if (id === "dataOcean") {
@@ -273,7 +267,7 @@ function ready(error, topo, data1, data2, data3) {
     ])
     .range(d3.schemeReds[9]);
 
-  // Draw the map
+  // tegner mappet
   svg
     .append("g")
     .selectAll("path")
@@ -281,7 +275,7 @@ function ready(error, topo, data1, data2, data3) {
     .enter()
     .append("path")
 
-    // draw each country
+    // tegner hvert land
     .attr("d", d3.geoPath().projection(projection))
     .style("stroke", "black")
     .attr("class", function (d) {
