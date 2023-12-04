@@ -192,7 +192,7 @@ function ready(error, topo, data1, data2, data3) {
           "10 - 250 Tons",
           "250 - 1.000 Tons",
           "1.000 - 10.000 Tons",
-          "10.000 - 50.000 Tons",
+          "10.000 - 400.000 Tons",
         ],
       };
     } else if (id === "dataTotal") {
@@ -205,8 +205,8 @@ function ready(error, topo, data1, data2, data3) {
           "0 - 500 Tons",
           "500 - 50.000 Tons",
           "50.000 - 100.000 Tons",
-          "100.000 - 1 mil Tons",
-          "1 mil. - 3 mil. Tons",
+          "100.000 - 1.5 mil. Tons",
+          "1 mil. - 13 mil. Tons",
         ],
       };
     } else {
