@@ -98,7 +98,7 @@ fetch("http://localhost:3000/barchart2")
     const colorScale = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => +d.mismanaged)])
-      .range(["lightblue", "darkblue"]); // Adjust the range of colors as needed
+      .range(["#71B1D9", "#3E5A89"]); // Adjust the range of colors as needed
 
     // Bars
     svg2
