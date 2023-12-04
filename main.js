@@ -8,11 +8,11 @@ const qry1 = "SELECT entity, code, mismanaged FROM capita";
 const qry2 = "SELECT * FROM ocean";
 const qry3 = "SELECT * FROM total";
 const qry4 =
-  "SELECT entity, mismanaged FROM capita WHERE entity = 'United States' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;";
+  "SELECT entity, mismanaged FROM capita WHERE entity = 'USA' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;";
 const qry5 =
-  "SELECT entity, mismanaged FROM ocean WHERE entity = 'United States' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;";
+  "SELECT entity, mismanaged FROM ocean WHERE entity = 'USA' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;";
 const qry6 =
-  "SELECT entity, mismanaged FROM total WHERE entity = 'United States' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;";
+  "SELECT entity, mismanaged FROM total WHERE entity = 'USA' OR entity = 'Denmark' OR entity = 'Brazil' OR entity = 'China' OR entity = 'India' OR entity = 'Russia' ORDER BY mismanaged desc;";
 
 // https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
 const cors = require("cors");
