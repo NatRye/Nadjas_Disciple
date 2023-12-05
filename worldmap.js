@@ -286,16 +286,16 @@ function ready(error, topo, data1, data2, data3) {
     ])
     .range(d3.schemeReds[9]);
 
-     // Add an ellipse to surround the world map
-svg
-.append("ellipse")
-.attr("cx", width / 2)
-.attr("cy", height / 2)
-.attr("rx", width / 2.2)
-.attr("ry", height / 2.2)
-.attr("fill", "none")
-.attr("stroke", "black")
-.attr("stroke-width", 2);
+  // Add an ellipse to surround the world map
+  svg
+    .append("ellipse")
+    .attr("cx", width / 2)
+    .attr("cy", height / 2)
+    .attr("rx", width / 2.2)
+    .attr("ry", height / 2.2)
+    .attr("fill", "lightblue")
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
 
   // tegner mappet
   svg
