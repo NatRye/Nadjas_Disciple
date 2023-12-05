@@ -60,8 +60,27 @@ function showCountryData(country) {
         .append("p")
         .html(dataType + ': <span class="data-value">' + dataValue + "</span>");
 
-      // Transistion er indpakket rundt om hele indholdet
+      // Add close button
+      infoBox
+        .append("button")
+        .attr("id", "close-button")
+        .text("Close infobox")
+        .on("click", closeCountryInfo);
+
+      // Transition is wrapped around the entire content
       infoBox.transition().duration(300).style("opacity", 1);
+    });
+}
+
+// Function to close the country info box
+function closeCountryInfo() {
+  var infoBox = d3.select("#country-info");
+  infoBox
+    .transition()
+    .duration(300)
+    .style("opacity", 0)
+    .on("end", function () {
+      infoBox.html(""); // Clear the content
     });
 }
 
