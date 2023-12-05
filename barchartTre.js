@@ -1,6 +1,6 @@
 //Barchart 1
 // sætter dimensioner til visualiseringen
-const margin3 = { top: 10, right: 30, bottom: 90, left: 60 };
+const margin3 = { top: 10, right: 30, bottom: 90, left: 100 };
 const bredde3 = 600 - margin3.left - margin3.right;
 const højde3 = 500 - margin3.top - margin3.bottom;
 
@@ -37,7 +37,7 @@ fetch("http://localhost:3000/barchart3")
     svg3
       .append("text")
       .attr("text-anchor", "center")
-      .attr("y", -45)
+      .attr("y", -70)
       .attr("x", -250)
       .style("font-size", "20px")
       .attr("transform", "rotate(-90)")
