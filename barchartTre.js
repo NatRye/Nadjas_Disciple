@@ -1,4 +1,4 @@
-//Barchart 1
+//Barchart 3
 // sætter dimensioner til visualiseringen
 const margin3 = { top: 10, right: 30, bottom: 90, left: 100 };
 const bredde3 = 600 - margin3.left - margin3.right;
@@ -13,7 +13,7 @@ const svg3 = d3
   .append("g")
   .attr("transform", `translate(${margin3.left},${margin3.top})`);
 
-// dataset(data.data)
+// dataset(data.data) Henter data fra localhost
 fetch("http://localhost:3000/barchart3")
   .then((response) => response.json())
   .then((result) => {
@@ -27,7 +27,7 @@ fetch("http://localhost:3000/barchart3")
       .padding(0.2);
     svg3
       .append("g")
-      .attr("transform", `translate(0,${højde})`)
+      .attr("transform", "translate(0,400)")
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
