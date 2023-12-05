@@ -7,7 +7,7 @@ var svg = d3.select("svg"),
 var path = d3.geoPath();
 var projection = d3
   .geoMercator()
-  .scale(150)
+  .scale(130)
   .center([0, 20])
   .translate([width / 2, height / 2]);
 
@@ -163,7 +163,7 @@ function ready(error, topo, data1, data2, data3) {
     var currentLegend;
     if (id === "dataCapita") {
       currentLegend = {
-        x: 50,
+        x: -15,
         y: [80, 100, 120, 140, 160, 180],
         fill: ["grey", "#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"],
         text: [
@@ -177,7 +177,7 @@ function ready(error, topo, data1, data2, data3) {
       };
     } else if (id === "dataOcean") {
       currentLegend = {
-        x: 50,
+        x: -15,
         y: [80, 100, 120, 140, 160, 180],
         fill: ["grey", "#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"],
         text: [
@@ -191,7 +191,7 @@ function ready(error, topo, data1, data2, data3) {
       };
     } else if (id === "dataTotal") {
       currentLegend = {
-        x: 50,
+        x: -15,
         y: [80, 100, 120, 140, 160, 180],
         fill: ["grey", "#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
         text: [
@@ -266,6 +266,17 @@ function ready(error, topo, data1, data2, data3) {
       500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000,
     ])
     .range(d3.schemeReds[9]);
+
+     // Add an ellipse to surround the world map
+svg
+.append("ellipse")
+.attr("cx", width / 2)
+.attr("cy", height / 2)
+.attr("rx", width / 2.2)
+.attr("ry", height / 2.2)
+.attr("fill", "none")
+.attr("stroke", "black")
+.attr("stroke-width", 2);
 
   // tegner mappet
   svg
