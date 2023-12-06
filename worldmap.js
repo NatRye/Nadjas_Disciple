@@ -182,7 +182,7 @@ function ready(error, topo, data1, data2, data3) {
     var currentLegend;
     if (id === "dataCapita") {
       currentLegend = {
-        x: [20, 210, 360, 510, 660, 810],
+        x: [10, 100, 280, 460, 640, 820],
         y: [850, 850, 850, 850, 850, 850],
         fill: ["grey", "#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"],
         text: [
@@ -196,7 +196,7 @@ function ready(error, topo, data1, data2, data3) {
       };
     } else if (id === "dataOcean") {
       currentLegend = {
-        x: [20, 210, 360, 510, 660, 810],
+        x: [10, 100, 280, 460, 640, 820],
         y: [850, 850, 850, 850, 850, 850],
         fill: ["grey", "#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"],
         text: [
@@ -210,7 +210,7 @@ function ready(error, topo, data1, data2, data3) {
       };
     } else if (id === "dataTotal") {
       currentLegend = {
-        x: [20, 210, 360, 510, 660, 810],
+        x: [10, 100, 230, 400, 610, 820],
         y: [850, 850, 850, 850, 850, 850],
         fill: ["grey", "#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
         text: [
@@ -235,7 +235,7 @@ function ready(error, topo, data1, data2, data3) {
         .duration(1000)
         .attr("x", currentLegend.x[index]) // Use different x values for each legend item
         .attr("y", y)
-        .attr("width", 180)
+        .attr("width", 220)
         .attr("height", 15)
         .style("fill", currentLegend.fill[index])
         .attr("class", "legend")
