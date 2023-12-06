@@ -235,7 +235,7 @@ function ready(error, topo, data1, data2, data3) {
         .duration(1000)
         .attr("x", currentLegend.x[index]) // Use different x values for each legend item
         .attr("y", y)
-        .attr("width", 150)
+        .attr("width", 180)
         .attr("height", 25)
         .style("fill", currentLegend.fill[index])
         .attr("class", "legend")
@@ -245,7 +245,7 @@ function ready(error, topo, data1, data2, data3) {
       // Legend tekst
       svg
         .append("text")
-        .attr("x", currentLegend.x[index] - 0) // Adjust x value for text as well
+        .attr("x", currentLegend.x[index] - 2) // Adjust x value for text as well
         .attr("y", y - 10)
         .text(currentLegend.text[index])
         .style("font-size", "20px")
