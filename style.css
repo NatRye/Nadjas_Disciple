@@ -169,11 +169,14 @@ body {
   border-width: 1px;
   border-radius: 10px;
   background-color: white;
-  text-align: center;
-  font-size: 150%;
+  font-size: 108%;
   background-color: white;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+li {
+  margin-top: 15px;
 }
 
 #close-button {
