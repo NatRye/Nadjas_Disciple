@@ -27,7 +27,7 @@ fetch("http://localhost:3000/barchart1")
       .padding(0.2);
     svg1
       .append("g")
-      .attr("transform", `translate(0,${højde})`)
+      .attr("transform", "translate(0,400)")
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
