@@ -80,7 +80,7 @@ fetch("http://localhost:3000/barchart2")
     const colorScale = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => +d.mismanaged)])
-      .range(["#71B1D9", "#3E5A89"]); // Adjust the range of colors as needed
+      .range(["#71B1D9", "#3E5A89"]); // justerer Range af farverne
 
     // Bars
     svg2
@@ -91,8 +91,8 @@ fetch("http://localhost:3000/barchart2")
       .attr("x", (d) => x(d.entity))
       .attr("width", x.bandwidth())
       .attr("fill", (d) => colorScale(d.mismanaged))
-      .attr("y", (d) => y(0)) // Start at the base
-      .attr("height", 0) // Initially, the height is 0
+      .attr("y", (d) => y(0)) // Starter fra bunden
+      .attr("height", 0) // Højden starter på 0
       .on("mouseover", mouseOverBar)
       .on("mouseleave", mouseLeaveBar);
 
