@@ -183,7 +183,7 @@ function ready(error, topo, data1, data2, data3) {
     if (id === "dataCapita") {
       currentLegend = {
         x: [20, 210, 360, 510, 660, 810],
-        y: [980, 980, 980, 980, 980, 980],
+        y: [850, 850, 850, 850, 850, 850],
         fill: ["grey", "#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"],
         text: [
           "No Data",
@@ -197,7 +197,7 @@ function ready(error, topo, data1, data2, data3) {
     } else if (id === "dataOcean") {
       currentLegend = {
         x: [20, 210, 360, 510, 660, 810],
-        y: [980, 980, 980, 980, 980, 980],
+        y: [850, 850, 850, 850, 850, 850],
         fill: ["grey", "#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"],
         text: [
           "No Data",
@@ -211,7 +211,7 @@ function ready(error, topo, data1, data2, data3) {
     } else if (id === "dataTotal") {
       currentLegend = {
         x: [20, 210, 360, 510, 660, 810],
-        y: [980, 980, 980, 980, 980, 980],
+        y: [850, 850, 850, 850, 850, 850],
         fill: ["grey", "#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
         text: [
           "No Data",
@@ -236,7 +236,7 @@ function ready(error, topo, data1, data2, data3) {
         .attr("x", currentLegend.x[index]) // Use different x values for each legend item
         .attr("y", y)
         .attr("width", 180)
-        .attr("height", 25)
+        .attr("height", 15)
         .style("fill", currentLegend.fill[index])
         .attr("class", "legend")
         .attr("stroke", "black") // Border color
@@ -291,10 +291,10 @@ function ready(error, topo, data1, data2, data3) {
   // Tilføjer en Ellipse som omringer verdenskortet
   svg
     .append("ellipse")
-    .attr("cx", width / 2)
-    .attr("cy", height / 2)
-    .attr("rx", width / 2.2)
-    .attr("ry", height / 2.2)
+    .attr("cx", width / 1.95)
+    .attr("cy", height / 2.15)
+    .attr("rx", width / 2.1)
+    .attr("ry", height / 3)
     .attr("fill", "lightblue")
     .attr("stroke", "black")
     .attr("stroke-width", 2);
