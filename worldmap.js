@@ -60,19 +60,19 @@ function showCountryData(country) {
         .append("p")
         .html(dataType + ': <span class="data-value">' + dataValue + "</span>");
 
-      // Add close button
+      // Tilføjer close button
       infoBox
         .append("button")
         .attr("id", "close-button")
         .text("Close infobox")
         .on("click", closeCountryInfo);
 
-      // Transition is wrapped around the entire content
+      //Transition er pakkede rundt om alt indholdet
       infoBox.transition().duration(300).style("opacity", 1);
     });
 }
 
-// Function to close the country info box
+// Function to close the country info box Funktion til at lukke country info boksen
 function closeCountryInfo() {
   var infoBox = d3.select("#country-info");
   infoBox
@@ -173,9 +173,9 @@ function ready(error, topo, data1, data2, data3) {
     }
   }
 
-  // Function ttil at opdatere legend baseret på det valgte datasæt
+  // Function til at opdatere legend baseret på det valgte datasæt
   function updateLegend(id) {
-    // Remove the existing legend
+    // Fjerner den eksisterende Legend
     svg.selectAll(".legend").remove();
 
     // Definer legend elementer dynamisk baseret på det valgte datasæt
@@ -286,7 +286,7 @@ function ready(error, topo, data1, data2, data3) {
     ])
     .range(d3.schemeReds[9]);
 
-  // Add an ellipse to surround the world map
+  // Tilføjer en Ellipse som omringer verdenskortet
   svg
     .append("ellipse")
     .attr("cx", width / 2)
