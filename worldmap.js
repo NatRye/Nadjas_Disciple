@@ -1,21 +1,21 @@
 // Svg
-var svg = d3.select("svg"),
+let svg = d3.select("svg"),
   width = +svg.attr("width"),
   height = +svg.attr("height");
 
 // Map og projection
-var path = d3.geoPath();
-var projection = d3
+let path = d3.geoPath();
+const projection = d3
   .geoMercator()
   .scale(130)
   .center([0, 20])
   .translate([width / 2, height / 2]);
 
 // Data map for hvert dataset
-var dataMapToShow = []; //Map til at blive vist
-var dataMap1 = d3.map(); //Map for datasæt 1
-var dataMap2 = d3.map(); //Map for datasæt 2
-var dataMap3 = d3.map(); //Map for datasæt 3
+let dataMapToShow = []; //Map til at blive vist
+const dataMap1 = d3.map(); //Map for datasæt 1
+const dataMap2 = d3.map(); //Map for datasæt 2
+const dataMap3 = d3.map(); //Map for datasæt 3
 
 // data
 d3.queue()
@@ -35,7 +35,7 @@ function filterAntarctica(data) {
 
 //Funktion der viser landendes data i en div med id'et "country-info"
 function showCountryData(country) {
-  var infoBox = d3.select("#country-info");
+  let infoBox = d3.select("#country-info");
 
   // Transistion der starter på infoboxen, som så derefter kører functionen med if statements der afgør hvilket datasæt der skal vises
   infoBox
@@ -74,7 +74,7 @@ function showCountryData(country) {
 
 // Function to close the country info box Funktion til at lukke country info boksen
 function closeCountryInfo() {
-  var infoBox = d3.select("#country-info");
+  let infoBox = d3.select("#country-info");
   infoBox
     .transition()
     .duration(300)
@@ -148,7 +148,7 @@ function ready(error, topo, data1, data2, data3) {
       .transition()
       .duration(1000)
       .attr("fill", function (d) {
-        var currentColorScale = updateColor(id);
+        const currentColorScale = updateColor(id);
         d.total = dataMapToShow.get(d.id) || 0;
 
         // Check om data er 'not available' og sæt standard farve for lande med intet data
@@ -269,17 +269,17 @@ function ready(error, topo, data1, data2, data3) {
   }
 
   //Skaleringer af farve
-  var colorScale1 = d3
+  const colorScale1 = d3
     .scaleThreshold()
     .domain([1, 2, 5, 8, 10, 15, 20, 25, 35, 50])
     .range(d3.schemeYlOrBr[9]);
 
-  var colorScale2 = d3
+  const colorScale2 = d3
     .scaleThreshold()
     .domain([10, 50, 100, 250, 500, 1000, 5000, 10000, 20000, 50000])
     .range(d3.schemeBlues[9]);
 
-  var colorScale3 = d3
+  const colorScale3 = d3
     .scaleThreshold()
     .domain([
       500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000,
