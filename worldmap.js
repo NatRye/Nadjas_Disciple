@@ -173,17 +173,17 @@ function ready(error, topo, data1, data2, data3) {
     }
   }
 
-  // Function til at opdatere legend baseret på det valgte datasæt
+  // Function ttil at opdatere legend baseret på det valgte datasæt
   function updateLegend(id) {
-    // Fjerner den eksisterende Legend
+    // Remove the existing legend
     svg.selectAll(".legend").remove();
 
     // Definer legend elementer dynamisk baseret på det valgte datasæt
     var currentLegend;
     if (id === "dataCapita") {
       currentLegend = {
-        x: -15,
-        y: [80, 100, 120, 140, 160, 180],
+        x: [20, 210, 360, 510, 660, 810],
+        y: [980, 980, 980, 980, 980, 980],
         fill: ["grey", "#FFFFEA", "#F2D6A2", "#F2A25C", "#D96E48", "#8C5642"],
         text: [
           "No Data",
@@ -196,8 +196,8 @@ function ready(error, topo, data1, data2, data3) {
       };
     } else if (id === "dataOcean") {
       currentLegend = {
-        x: -15,
-        y: [80, 100, 120, 140, 160, 180],
+        x: [20, 210, 360, 510, 660, 810],
+        y: [980, 980, 980, 980, 980, 980],
         fill: ["grey", "#F8FCFF", "#B2D5E7", "#71B1D9", "#538DC5", "#3E5A89"],
         text: [
           "No Data",
@@ -210,8 +210,8 @@ function ready(error, topo, data1, data2, data3) {
       };
     } else if (id === "dataTotal") {
       currentLegend = {
-        x: -15,
-        y: [80, 100, 120, 140, 160, 180],
+        x: [20, 210, 360, 510, 660, 810],
+        y: [980, 980, 980, 980, 980, 980],
         fill: ["grey", "#F2F2F2", "#FDA88F", "#F4665B", "#B94848", "#88393F"],
         text: [
           "No Data",
@@ -233,20 +233,22 @@ function ready(error, topo, data1, data2, data3) {
         .append("rect")
         .transition()
         .duration(1000)
-        .attr("x", currentLegend.x)
+        .attr("x", currentLegend.x[index]) // Use different x values for each legend item
         .attr("y", y)
-        .attr("width", 20)
-        .attr("height", 20)
+        .attr("width", 150)
+        .attr("height", 25)
         .style("fill", currentLegend.fill[index])
-        .attr("class", "legend");
+        .attr("class", "legend")
+        .attr("stroke", "black") // Border color
+        .attr("stroke-width", 1.5);
 
       // Legend tekst
       svg
         .append("text")
-        .attr("x", currentLegend.x + 20)
-        .attr("y", y + 10)
+        .attr("x", currentLegend.x[index] - 0) // Adjust x value for text as well
+        .attr("y", y - 10)
         .text(currentLegend.text[index])
-        .style("font-size", "15px")
+        .style("font-size", "20px")
         .attr("alignment-baseline", "middle")
         .attr("class", "legend");
     });
