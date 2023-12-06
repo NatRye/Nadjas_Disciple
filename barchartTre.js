@@ -11,7 +11,7 @@ const svg3 = d3
   .attr("width", bredde3 + margin3.left + margin3.right)
   .attr("height", højde3 + margin3.top + margin3.bottom)
   .append("g")
-  .attr("transform", `translate(${margin3.left},${margin3.top})`);
+  .attr("transform", "translate(90,20)");
 
 // dataset(data.data) Henter data fra localhost
 fetch("http://localhost:3000/barchart3")
