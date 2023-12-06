@@ -283,7 +283,7 @@ function ready(error, topo, data1, data2, data3) {
 
   const colorScale3 = d3
     .scaleThreshold()
-    .domain([500, 50000, 100000, 1500000, 13000000])
+    .domain([500, 50000, 100000, 1000000, 1500000])
     .range(d3.schemeReds[5]);
 
   // Tilføjer en Ellipse som omringer verdenskortet
