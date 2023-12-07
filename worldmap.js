@@ -273,20 +273,18 @@ function ready(error, topo, data1, data2, data3) {
   //Skaleringer af farve
   const colorScale1 = d3
     .scaleThreshold()
-    .domain([1, 2, 5, 8, 10, 15, 20, 25, 35, 50])
-    .range(d3.schemeYlOrBr[9]);
+    .domain([1, 10, 15, 20, 50])
+    .range(d3.schemeYlOrBr[5]);
 
   const colorScale2 = d3
     .scaleThreshold()
-    .domain([10, 50, 100, 250, 500, 1000, 5000, 10000, 20000, 50000])
-    .range(d3.schemeBlues[9]);
+    .domain([10, 250, 1000, 10000, 400000])
+    .range(d3.schemeBlues[5]);
 
   const colorScale3 = d3
     .scaleThreshold()
-    .domain([
-      500, 2000, 10000, 50000, 100000, 500000, 1000000, 1500000, 200000000,
-    ])
-    .range(d3.schemeReds[9]);
+    .domain([500, 50000, 100000, 1000000, 1500000])
+    .range(d3.schemeReds[5]);
 
   // Tilføjer en Ellipse som omringer verdenskortet
   svg
