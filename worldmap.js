@@ -23,9 +23,9 @@ d3.queue()
     d3.json,
     "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"
   ) //topo
-  .defer(d3.json, "http://localhost:3000/datacapitA") //data1
-  .defer(d3.json, "http://localhost:3000/dataocean") //data2
-  .defer(d3.json, "http://localhost:3000/datatotal") //data3
+  .defer(d3.json, "https://localhost:3000/datacapitA") //data1
+  .defer(d3.json, "https://localhost:3000/dataocean") //data2
+  .defer(d3.json, "https://localhost:3000/datatotal") //data3
   .await(ready);
 
 // Funktion der filtrere Antarktis ud

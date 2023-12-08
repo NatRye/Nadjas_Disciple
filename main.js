@@ -133,5 +133,5 @@ app.get("/barchart3", async (req, res) => {
 
 // Express serveren startes
 app.listen(port, () => {
-  console.log(`Appl. lytter på http://localhost:${port}`);
+  console.log(`Appl. lytter på https://localhost:${port}`);
 });

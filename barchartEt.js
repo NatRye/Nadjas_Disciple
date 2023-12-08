@@ -14,7 +14,7 @@ const svg1 = d3
   .attr("transform", "translate(60,20)");
 
 // dataset(data.data)
-fetch("http://localhost:3000/barchart1")
+fetch("https://localhost:3000/barchart1")
   .then((response) => response.json())
   .then((result) => {
     const data = result.data; // tilgår data property
