@@ -18,8 +18,7 @@ h2 {
 
 /* Formatering af body-elementer */
 body {
-  background-image: url(https://images3.alphacoders.com/132/1325254.png);
-  background-repeat: no-repeat;
+  background-color: white;
 }
 
 /* Styling af download-dataset knappen */
