@@ -14,7 +14,7 @@ const svg3 = d3
   .attr("transform", "translate(90,20)");
 
 // dataset(data.data) Henter data fra localhost
-fetch("https://localhost:3000/barchart3")
+fetch("https://nadjas-disciple-server.onrender.com/barchart3")
   .then((response) => response.json())
   .then((result) => {
     const data = result.data; // tilgår data property

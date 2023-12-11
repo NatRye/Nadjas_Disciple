@@ -131,7 +131,9 @@ app.get("/barchart3", async (req, res) => {
   }
 });
 
+app.enable("trust proxy");
+
 // Express serveren startes
 app.listen(port, () => {
-  console.log(`Appl. lytter på https://localhost:${port}`);
+  console.log(`Appl. lytter på ${port}`);
 });
